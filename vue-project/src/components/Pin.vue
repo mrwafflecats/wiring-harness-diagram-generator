@@ -2,7 +2,9 @@
 export default{
     data() {
         return{
-            text:''
+            pin:'',
+            color: '',
+            description: '',
 
         }
     }
@@ -10,7 +12,9 @@ export default{
 </script>
 
 <template>
-
+<input :value="pin" placeholder="pin">
+<input :value="color" placeholder="color">
+<input :value="description" placeholder="description">
 </template>
 
 <style>
