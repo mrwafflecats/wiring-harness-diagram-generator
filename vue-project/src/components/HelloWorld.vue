@@ -1,3 +1,5 @@
+This is only for reference only and is not used in the project.
+
 <script setup>
 defineProps({
   msg: {
