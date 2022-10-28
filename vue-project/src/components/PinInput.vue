@@ -2,17 +2,17 @@
 export default{
     data() {
         return{
-            id:Number,
+            // id:Number,
+            pin:{
             pinNum:'',
             color: 'black',
             description: 'Add a description',
-            connection: {pinNum: '', connector: ''}
+            connection: {pinNum: '', connector: ''}}
+
         }
     },
+    emits:['addPin'],
     methods:{
-        AddPin(){
-            return
-        }
     }
 }
 </script>
@@ -21,7 +21,7 @@ export default{
 <input :value="pinNum" placeholder="pin">
 <input :value="color" placeholder={{color}}>
 <input :value="description" placeholder={{description}}>
-<button @click="AddPin">Add Pin</button>
+<button @click="$emit('addPin', this.pin)">Add Pin</button>
 </template>
 
 <style>
