@@ -1,5 +1,9 @@
 <script setup>
 // import HelloWorld from "./components/HelloWorld.vue";
+import Connector from "./components/Connector.vue"
+
+
+
 </script>
 
 <template>
@@ -10,17 +14,19 @@
       src="@/assets/logo.svg"
       width="125"
       height="125"
-    /> -->
+    /> -->     
 <!-- TODO make 'Add Connector' button -->
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
+    <h1>Connectors</h1>
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav> -->
+      <Connector></Connector>
     </div>
   </header>
+
 
   <!-- <RouterView /> -->
 </template>
