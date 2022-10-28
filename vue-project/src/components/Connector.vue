@@ -1,9 +1,17 @@
 <script>
-import pin from './Pin.vue'
+import Pin from './Pin.vue'
 
 export default{
     components: {
-        pin
+        Pin
+    },
+    data() {     
+        return{
+        id: '',
+        name:'',
+        pins: []
+        }  
+
     }
 }
 </script>

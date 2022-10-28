@@ -2,19 +2,20 @@
 export default{
     data() {
         return{
-            pin:'',
-            color: '',
-            description: '',
-
+            id:Number,
+            pinNum:'',
+            color: 'black',
+            description: 'Add a description',
+            connection: {pinNum: '', connector: ''}
         }
     }
 }
 </script>
 
 <template>
-<input :value="pin" placeholder="pin">
-<input :value="color" placeholder="color">
-<input :value="description" placeholder="description">
+<input :value="pinNum" placeholder="pin">
+<input :value="color" placeholder={{color}}>
+<input :value="description" placeholder={{description}}>
 </template>
 
 <style>
