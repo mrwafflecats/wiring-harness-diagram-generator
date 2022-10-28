@@ -13,9 +13,9 @@ export default{
 </script>
 
 <template>
-<input :value="pinNum" placeholder="pin">
-<input :value="color" placeholder={{color}}>
-<input :value="description" placeholder={{description}}>
+    <h3>{{pinNum}}</h3>
+    <h3>{{description}}</h3>
+    <h3>Connected to pin {{connection.pinNum}} on connector {{connection.connector}}</h3>
 </template>
 
 <style>

@@ -11,7 +11,7 @@
       width="125"
       height="125"
     /> -->
-
+<!-- TODO make 'Add Connector' button -->
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
