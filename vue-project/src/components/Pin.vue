@@ -2,7 +2,7 @@
 export default{
     data() {
         return{
-            id:Number,
+            id:'',
             pinNum:'',
             color: 'black',
             description: 'Add a description',

@@ -1,5 +1,6 @@
 <script setup>
 // import HelloWorld from "./components/HelloWorld.vue";
+import Connector from "./components/Connector.vue"
 </script>
 
 <template>
@@ -14,6 +15,7 @@
 <!-- TODO make 'Add Connector' button -->
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <Connector></Connector>
 
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
