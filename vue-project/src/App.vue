@@ -1,6 +1,6 @@
 <script setup>
 // import HelloWorld from "./components/HelloWorld.vue";
-import Connector from "./components/Connector.vue"
+import Device from "./components/Device.vue"
 </script>
 
 <template>
@@ -12,17 +12,10 @@ import Connector from "./components/Connector.vue"
       width="125"
       height="125"
     /> -->     
-<!-- TODO make 'Add Connector' button -->
+<!-- TODO make 'Add device' button -->
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <Connector></Connector>
 
-    <h1>Connectors</h1>
-      <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
-      <Connector></Connector>
+      <Device></Device>
     </div>
   </header>
 
