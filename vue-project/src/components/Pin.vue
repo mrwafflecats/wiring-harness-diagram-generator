@@ -1,5 +1,10 @@
 <script>
 export default{
+    props:[
+        'pinNum',
+        'color',
+        'description'
+    ],
     data() {
         return{
             id:'',
@@ -13,9 +18,9 @@ export default{
 </script>
 
 <template>
-    <h3>{{pinNum}}</h3>
-    <h3>{{description}}</h3>
-    <h3>Connected to pin {{connection.pinNum}} on connector {{connection.connector}}</h3>
+    <h6>{{pinNum}}</h6>
+    <h6>{{description}}</h6> 
+    <h6>Connected to pin {{connection.pinNum}} on connector {{connection.connector}}</h6>
 </template>
 
 <style>
