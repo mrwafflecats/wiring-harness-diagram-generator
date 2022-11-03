@@ -8,14 +8,23 @@ export default{
     data(){
         return{
             id:'',
-            name:'',
+            name:'dev 1',
+            connectorInput:'',
             connectors:[]
+        }
+    },
+    methods:{
+        AddConnector(name){
+            this.connectors.push(name)
         }
     }
 }
 </script>
 
 <template>
-<li v-for="connector in connectors">{{connector}}</li>
+<h2>Device: {{this.name}}</h2>
+<li v-for="connector in connectors"><Connector :name="connector"/></li>
 <!-- TODO add a way to create new connectors -->
+<input v-model="connectorInput" placeholder="Connector Name"/>
+<button @click="AddConnector(connectorInput)">Add Connector</button>
 </template>
