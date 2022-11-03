@@ -6,12 +6,13 @@ export default{
     components: {
         Pin,
         PinInput        
-
     },
+    props:['name'],
     data() {     
         return{
+        // TODO: auto create id, automatically increase the pin number after adding a pin
         id: '',
-        name:'con 1',
+        // name:'',
         pins: [{pinNum:'',color:'',description:'', connection:''}]
         }  
 
@@ -25,7 +26,9 @@ export default{
 </script>
 
 <template>
-    <h2>Connector: {{this.name}}</h2>
+    <h2>Connector: {{name}}</h2>
+    <!-- TODO: add way to edit pins and connectors, add connection prop  -->
+
     <li v-for="pin in pins">
         <Pin :pin-num="pin.pinNum" :color="pin.color" :description="pin.description"/>
     </li>
