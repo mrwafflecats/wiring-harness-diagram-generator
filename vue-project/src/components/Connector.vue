@@ -6,12 +6,13 @@ export default{
     components: {
         Pin,
         PinInput        
+
     },
     data() {     
         return{
         id: '',
-        name:'',
-        pins: [Pin]
+        name:'con 1',
+        pins: [{pinNum:'',color:'',description:'', connection:''}]
         }  
 
     },
@@ -24,8 +25,9 @@ export default{
 </script>
 
 <template>
+    <h2>Connector: {{this.name}}</h2>
     <li v-for="pin in pins">
-        <h3>{{pin}}</h3>
+        <Pin :pin-num="pin.pinNum" :color="pin.color" :description="pin.description"/>
     </li>
     <PinInput @add-pin="(x) =>AddPin(x)"/>
 </template>
