@@ -13,6 +13,7 @@ export default{
         name:'',
         pins: [Pin]
         }  
+
     },
     methods:{
         AddPin(pin){
@@ -24,7 +25,7 @@ export default{
 
 <template>
     <li v-for="pin in pins">
-        <h3>{{pin.pinNum}}</h3>
+        <h3>{{pin}}</h3>
     </li>
-    <PinInput @addPin="AddPin"/>
+    <PinInput @add-pin="(x) =>AddPin(x)"/>
 </template>

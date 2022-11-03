@@ -5,23 +5,26 @@ export default{
             // id:Number,
             pin:{
             pinNum:'',
-            color: 'black',
-            description: 'Add a description',
-            connection: {pinNum: '', connector: ''}}
-
+            color: '',
+            description: '',
+            connection: {pinNum: '', connector: ''}
         }
-    },
+    }
+},
     emits:['addPin'],
     methods:{
+        AddPin(){
+            this.$emit('addPin', {id: this.id, pinNum:this.pinNum,color: this.color, description: this.description, connection: this.connection})
+        }
     }
 }
 </script>
 
 <template>
-<input :value="pinNum" placeholder="pin">
-<input :value="color" placeholder={{color}}>
-<input :value="description" placeholder={{description}}>
-<button @click="$emit('addPin', this.pin)">Add Pin</button>
+<input v-model="pinNum" placeholder="pin">
+<input v-model="color" placeholder="color">
+<input v-model="description" placeholder="Add a description">
+<button @click="AddPin">Add Pin</button>
 </template>
 
 <style>
