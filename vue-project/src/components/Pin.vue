@@ -8,9 +8,9 @@ export default{
     data() {
         return{
             id:'',
-            pinNum:'',
-            color: 'black',
-            description: 'Add a description',
+            // pinNum:'',
+            // color: 'black',
+            // description: 'Add a description',
             connection: {pinNum: '', connector: ''}
         }
     }
@@ -19,6 +19,7 @@ export default{
 
 <template>
     <h6>{{pinNum}}</h6>
+    <h6>{{color}}</h6>
     <h6>{{description}}</h6> 
     <h6>Connected to pin {{connection.pinNum}} on connector {{connection.connector}}</h6>
 </template>
