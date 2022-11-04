@@ -1,27 +1,40 @@
 <script>
 export default{
-    props:[
-        'pinNum',
-        'color',
-        'description'
-    ],
+    components: {PinInput},
+    props: {
+        pinNum: String,
+        color: String,
+        description: String
+    },
     data() {
-        return{
-            id:'',
-            // pinNum:'',
-            // color: 'black',
-            // description: 'Add a description',
-            connection: {pinNum: '', connector: ''}
+        return {
+            id: "",
+            pin:{
+            _pinNum: this.pinNum,
+            _color: this.color,
+            _description: this.description,
+            connection: { pinNum: "", connector: "" },
+            },
+            editMode: false
+        };
+    },
+    methods:{
+        ChangePin(newPin){
+            this.pin = newPin
         }
     }
 }
 </script>
 
 <template>
-    <h6>{{pinNum}}</h6>
-    <h6>{{color}}</h6>
-    <h6>{{description}}</h6> 
-    <h6>Connected to pin {{connection.pinNum}} on connector {{connection.connector}}</h6>
+    <!-- <div @click="this.editMode = !this.editMode"> -->
+    <h5>{{pin._pinNum}}</h5>
+    <h5>{{pin._color}}</h5>
+    <h5>{{pin._description}}</h5> 
+    <h5>Connected to pin {{pin.connection.pinNum}} on connector {{pin.connection.connector}}</h5>
+    <!-- </div> -->
+    <!-- <PinInput v-show="editMode" @add-pin="(x)=>ChangePin(x)" :pinNum="this.pin._pinNum" :color="this.pin._color" :description="this.pin._description"/> -->
+
 </template>
 
 <style>
