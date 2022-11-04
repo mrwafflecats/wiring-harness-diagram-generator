@@ -13,7 +13,7 @@ export default{
         // TODO: auto create id, automatically increase the pin number after adding a pin
         id: '',
         // name:'',
-        pins: [{pinNum:'',color:'',description:'', connection:''}]
+        pins: []
         }  
 
     },
@@ -32,5 +32,5 @@ export default{
     <li v-for="pin in pins">
         <Pin :pin-num="pin.pinNum" :color="pin.color" :description="pin.description"/>
     </li>
-    <PinInput @add-pin="(x) =>AddPin(x)"/>
+    <PinInput @add-pin="(x)=>AddPin(x)"/>
 </template>
