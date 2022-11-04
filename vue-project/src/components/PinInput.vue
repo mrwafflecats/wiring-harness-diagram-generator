@@ -1,20 +1,26 @@
 <script>
 export default{
+    props:{
+        pinNum:{default: 'pin'},
+        color: {default: 'black'},
+        description: {default: 'Add a description'},
+        connection: {default: {pinNum: '', connector:''}}
+    },
     data() {
         return{
-            // id:Number,
-            pin:{
-            pinNum:'',
-            color: '',
-            description: '',
-            connection: {pinNum: '', connector: ''}
-        }
+            // id:Number
+        //     pin:{
+        //     pinNum:'',
+        //     color: '',
+        //     description: '',
+        //     connection: {pinNum: '', connector: ''}
+        // }
     }
 },
     emits:['addPin'],
     methods:{
         AddPin(){
-            this.$emit('addPin', {id: this.id, pinNum:this.pinNum,color: this.color, description: this.description, connection: this.connection})
+            this.$emit('addPin', { pinNum:this.pinNum, color: this.color, description: this.description, connection: this.connection})
         }
     }
 }
