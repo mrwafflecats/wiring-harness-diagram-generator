@@ -1,4 +1,6 @@
 <script>
+import PinInput from './PinInput.vue';
+
 export default{
     components: {PinInput},
     props: {
@@ -27,13 +29,12 @@ export default{
 </script>
 
 <template>
-    <!-- <div @click="this.editMode = !this.editMode"> -->
     <h5>{{pin._pinNum}}</h5>
     <h5>{{pin._color}}</h5>
     <h5>{{pin._description}}</h5> 
     <h5>Connected to pin {{pin.connection.pinNum}} on connector {{pin.connection.connector}}</h5>
-    <!-- </div> -->
-    <!-- <PinInput v-show="editMode" @add-pin="(x)=>ChangePin(x)" :pinNum="this.pin._pinNum" :color="this.pin._color" :description="this.pin._description"/> -->
+    <button @click="editMode = !editMode">Edit</button>
+    <PinInput v-if="editMode" @add-pin="(x)=>ChangePin(x)" :pinNum="pin._pinNum" :color="pin._color" :description="pin._description" :connection="pin.connection"/>
 
 </template>
 

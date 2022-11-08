@@ -1,5 +1,7 @@
 <script>
 export default{
+
+    //issue when creating pininput component
     props:{
         pinNum:{default: 'pin'},
         color: {default: 'black'},
@@ -9,27 +11,27 @@ export default{
     data() {
         return{
             // id:Number
-        //     pin:{
-        //     pinNum:'',
-        //     color: '',
-        //     description: '',
-        //     connection: {pinNum: '', connector: ''}
-        // }
-    }
+            pin:{
+            _pinNum: this.pinNum,
+            _color: this.color,
+            _description: this.description,
+            _connection: {pinNum: this.connection.pinNum, connector: this.connection.connector}
+        }
+    };
 },
     emits:['addPin'],
     methods:{
         AddPin(){
-            this.$emit('addPin', { pinNum:this.pinNum, color: this.color, description: this.description, connection: this.connection})
+            this.$emit('addPin', { pinNum:this._pinNum, color: this._color, description: this._description, connection: this._connection})
         }
     }
 }
 </script>
 
 <template>
-<input v-model="pinNum" placeholder="pin">
-<input v-model="color" placeholder="color">
-<input v-model="description" placeholder="Add a description">
+<input v-model="_pinNum" placeholder="pin">
+<input v-model="_color" placeholder="color">
+<input v-model="_description" placeholder="Add a description">
 <button @click="AddPin">Add Pin</button>
 </template>
 
