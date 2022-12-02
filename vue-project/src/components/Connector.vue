@@ -30,7 +30,7 @@ export default{
     <!-- TODO: add way to edit pins and connectors, add connection prop  -->
 
     <li v-for="pin in pins">
-        <Pin :pin-num="pin._pinNum" :color="pin._color" :description="pin._description"/>
+        <Pin :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"/>
     </li>
     <PinInput @add-pin="(x)=>AddPin(x)"/>
 </template>
