@@ -54,6 +54,8 @@ export default{
 <input v-model="pin.color" placeholder="color">
 <input v-model="pin.description" placeholder="Add a description">
 <button @click="AddPin">Add Pin</button>
+<input type="checkbox" v-model="autoIncrement" name="check"/>
+<label for="check">Auto-Increment</label>
 </template>
 
 <style>
