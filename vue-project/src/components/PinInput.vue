@@ -1,6 +1,6 @@
 <script>
 export default {
-
+    emits: ['addPin'],
     data() {
         return {
             // id:Number
@@ -13,7 +13,6 @@ export default {
             autoIncrement: true, // automatically increments the pin number
         };
     },
-    emits: ['addPin'],
     methods: {
         AddPin() {
             this.$emit('addPin', this.pin)
@@ -37,8 +36,6 @@ export default {
                 }//if you somehow manage to get a connector with more than 1000 pins on it, you are doing something wrong
                 console.log(numIndex)
                 numArray++
-
-
                 var tempStr = str.split('')
                 tempStr.splice(numIndex, digitCount(), numArray.toString())
                 var tempStr = tempStr.join('')
@@ -55,7 +52,7 @@ export default {
     <input v-model="pin.pinNum" placeholder="pin">
     <input v-model="pin.color" placeholder="color">
     <input v-model="pin.description" placeholder="Add a description">
-    <button @click="AddPin" >Add Pin</button>
+    <button @click="AddPin">Add Pin</button>
     <input type="checkbox" v-model="autoIncrement" name="check" />
     <label for="check">Auto-Increment</label>
 </template>
