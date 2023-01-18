@@ -34,7 +34,6 @@ export default {
                     else
                         return 1
                 }//if you somehow manage to get a connector with more than 1000 pins on it, you are doing something wrong
-                console.log(numIndex)
                 numArray++
                 var tempStr = str.split('')
                 tempStr.splice(numIndex, digitCount(), numArray.toString())
