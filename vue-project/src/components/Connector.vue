@@ -20,6 +20,9 @@ export default{
     methods:{
         AddPin(pin){
             this.pins.push(pin)
+            },
+        DeletePin(id){
+            this.pins.splice(id, 1);
             }
         }
     }
