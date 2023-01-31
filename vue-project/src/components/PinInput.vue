@@ -15,6 +15,7 @@ export default {
     },
     methods: {
         AddPin() {
+            //TODO: make it so this adds to the backend instead of having the front end dealing with it, since the front end is being a little bitch rn
             this.$emit('addPin', this.pin)
             this.$nextTick(this.AutoIncrement)
         },
@@ -48,10 +49,13 @@ export default {
 </script>
 
 <template>
-    <input v-model="pin.pinNum" placeholder="pin">
-    <input v-model="pin.color" placeholder="color">
-    <input v-model="pin.description" placeholder="Add a description">
-    <button @click="AddPin">Add Pin</button>
+    <form @submit.prevent="AddPin">
+        <input v-model.lazy="pin.pinNum" placeholder="pin">
+        <input v-model.lazy="pin.color" placeholder="color">
+        <input v-model.lazy="pin.description" placeholder="Add a description">
+        <button type="submit">Add Pin</button>
+    </form>
+
     <input type="checkbox" v-model="autoIncrement" name="check" />
     <label for="check">Auto-Increment</label>
 </template>

@@ -5,12 +5,12 @@ export default{
         initColor: String,
         initDescription: String,
         editModeProp: Boolean,
-        idProp: Number
+        id:{ required: true} 
     },
-
+    emits:['delete'],
     data() {
         return {
-            id: this.idProp,
+            // id: this.idProp,
             pin:{
             pinNum: this.initPinNum,
             color: this.initColor,
@@ -37,10 +37,9 @@ export default{
         <input v-model="pin.pinNum">
         <input v-model="pin.color">
         <input v-model="pin.description">
-        <!-- <button @click="$emit('deletePin', id)">X</button> -->
+        <button @click="$emit('delete')">X</button>
     </div>
-
-    <!-- <button @click="() => {editMode = !editMode; $emit('deletePin', editMode)}">Edit</button> -->
+    <!-- when button is submited for edit mode, send the new data to backend,, maybe get out of editmode? -->
     
 </template>
 
