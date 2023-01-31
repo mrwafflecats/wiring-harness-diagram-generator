@@ -30,8 +30,7 @@ export default{
             this.pins.splice(id, 1)
         },
 
-        }
-    }
+    }}
 
 </script>
 
