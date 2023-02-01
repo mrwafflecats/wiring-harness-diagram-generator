@@ -3,7 +3,8 @@ var router = express.Router();
 var bodyParser = require('body-parser')
 var cors = require('cors')
 
-const pins = require('./db/pins')
+const pins = require('./db/pins');
+const app = require('../app');
 
 /* GET home page. */
 // TODO: have this post the vue project
@@ -32,3 +33,5 @@ app.post('/pins', (req, res) =>{
 })
 
 module.exports = router;
+
+app.listen(4000)
