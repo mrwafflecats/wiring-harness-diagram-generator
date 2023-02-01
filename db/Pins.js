@@ -1,5 +1,5 @@
 //joi is for data validation
-//this file is boilerplate for pin objects between client, server and database
+//this file is a model for pin objects between client, server and database
 
 const { func } = require('joi')
 const Joi = require('joi')
