@@ -1,6 +1,5 @@
 <script setup>
-// import HelloWorld from "./components/HelloWorld.vue";
-import Device from "./components/Device.vue"
+import Home from "./components/Home.vue"
 </script>
 
 <template>
@@ -11,11 +10,9 @@ import Device from "./components/Device.vue"
       src="@/assets/logo.svg"
       width="125"
       height="125"
-    /> -->     
-<!-- TODO make 'Add device' button -->
+    /> -->
     <div class="wrapper">
-
-      <Device></Device>
+      <Home></Home>
     </div>
   </header>
 
