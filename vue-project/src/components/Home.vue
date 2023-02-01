@@ -2,12 +2,20 @@
 import Device from "./components/Device.vue"
 
 //url to beckend server route
-const API_URL = "http://localhost:4000/pins";
+const API_URL = "http://localhost:4000/pins"
 
-export default{
-  mounted(){
-  fetch(API_URL)
-}
+export default {
+    data() {
+        return {
+            error: "",
+            pins: []
+        }
+    },
+    mounted() {
+        fetch(API_URL).then(response => response.json()).then(result => {
+            this.pins = result
+        })
+    }
 }
 </script>
 
