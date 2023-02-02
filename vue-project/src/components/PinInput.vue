@@ -1,4 +1,6 @@
 <script>
+//url to backend
+const API_URL = "http://localhost:4000/pins"
 export default {
     emits: ['addPin'],
     data() {
@@ -13,11 +15,30 @@ export default {
             autoIncrement: true, // automatically increments the pin number
         };
     },
+
     methods: {
         AddPin() {
-            //TODO: make it so this adds to the backend instead of having the front end dealing with it, since the front end is being a little bitch rn
-            this.$emit('addPin', this.pin)
-            this.$nextTick(this.AutoIncrement)
+            fetch(API_URL, {
+                method: "POST",
+                body: JSON.stringify(this.pin),
+                headers: {
+                    "content-type": "application/json"
+                }
+            }).then(response => response.json())
+                .then(result => {
+                    if (result.details) {
+                        //there was an error
+                        const error = result.details
+                            .map(detail => detail.pin)
+                            .join(". ")
+
+                        this.error = error
+                    } else {
+                        this.error = ""
+                        this.showMessageForm = false
+                        this.messages.push(result)
+                    }
+                })
         },
         AutoIncrement() {
             //js is witchcraft 
