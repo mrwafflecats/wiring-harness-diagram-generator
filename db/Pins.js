@@ -21,12 +21,22 @@ function getAll(){
 }
 
 function createPin(pin){
+    //validates the pin
     const result = Joi.validate(pin, schema)
 
     if(result.error == null)
         pins.insert(pin)    
     else
-        return Promise.reject(result.error)    
+        //if the pin is invalid return an error
+        return Promise.reject(result.error)
+}
+
+function updatePin(pinID, pin){
+    const result = Joi.validate(pin, schema)
+    if(result.error == null)
+        pins.update({id:pinID}, {$set: {pinNum: pin.pinNum, color: pin.color, description: pin.description }})
+    else 
+        return Promise.reject(result.error)
 }
 
 function deletePin(pin){
