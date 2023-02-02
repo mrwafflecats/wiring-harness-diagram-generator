@@ -8,7 +8,7 @@ const app = require('../app');
 
 /* GET home page. */
 // TODO: have this post the vue project
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 //get is for retrieving data
@@ -16,20 +16,32 @@ router.get('/', function(req, res, next) {
 //PUT makes the server modify data sent by client, creates a new thing if it doesn't exist
 //DELETE is pretty self explanatory
 
-//Gets the pins from the database and posts it somewhere...
+//Gets the pins from the database and sends it to client
 app.get('/pins', (req, res) => {
   pins.getAll().then((pins) => {
     res.json(pins)
   })
 })
 
-app.post('/pins', (req, res) =>{
-  pins.create(req.body).then((pin) => {
-    res.json(pin)
-  }).catch((error) => {
-    res.status(500)
-    res.json(error)
-  })
+//Recieves data from a client and adds it to the database 
+app.post('/pins', (req, res) => {
+  pins.createPin(req.body)
+    .then((pin) => {
+      res.json(pin)
+    }).catch((error) => {
+      res.status(500)
+      res.json(error)
+    })
+})
+
+app.delete('/pins', (req, res) => {
+  pins.deletePin(req.body)
+    .then((pin) => {
+      res.json(pin)
+    }).catch((error) => {
+      res.status(500)
+      res.json(error)
+    })
 })
 
 module.exports = router;
