@@ -2,6 +2,8 @@
 import Pin from './Pin.vue'
 import PinInput from './PinInput.vue'
 
+//url to backend 
+const API_URL = "http://localhost:4000/pins"
 
 export default{
     components: {
@@ -14,16 +16,17 @@ export default{
         // TODO: auto create id
         // id: '',
         // name:'',
-        pins: [{pinNum:'', color:'',description:'' }],
+        pins: [],
         editMode: false,
         }
     },
+    mounted() {
+        //gets the pins from the database 
+        fetch(API_URL).then(response => response.json()).then(result => {
+            this.pins = result
+        })
+    },
     methods:{
-        AddPin(pin){
-            //TODO: not needed anymore 
-            this.pins.push(pin)
-            console.log(this.pins)
-            },
         DeletePin(pinId){
             //TODO: this will send the pin to delete to the backend
             const id = this.pins.findIndex((pin) => pin.id === pinId)
