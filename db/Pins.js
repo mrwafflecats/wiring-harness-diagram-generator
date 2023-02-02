@@ -20,13 +20,22 @@ function getAll(){
     return pins.find()
 }
 
-function create(pin){
+function createPin(pin){
     const result = Joi.validate(pin, schema)
 
     if(result.error == null)
         pins.insert(pin)    
     else
         return Promise.reject(result.error)    
+}
+
+function deletePin(pin){
+    const result = Joi.validate(pin, schema)
+
+    if (result.error == null)
+        pins.remove(pin)
+    else
+        return Promise.reject(result.error)
 }
 
 module.exports = {
