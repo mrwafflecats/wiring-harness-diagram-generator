@@ -1,5 +1,5 @@
 <script setup>
-import Home from "./components/Home.vue"
+import Device from "./components/Device.vue"
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import Home from "./components/Home.vue"
       height="125"
     /> -->
     <div class="wrapper">
-      <Home></Home>
+      <Device></Device>
     </div>
   </header>
 
