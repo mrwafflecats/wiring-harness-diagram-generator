@@ -21,7 +21,7 @@ export default{
         }
     },
     mounted() {
-        //gets the pins from the database 
+        //gets the pins from the database
         fetch(API_URL).then(response => response.json()).then(result => {
             this.pins = result
         })
