@@ -49,6 +49,8 @@ function deletePin(pin){
 }
 
 module.exports = {
-    create,
+    createPin,
+    updatePin,
+    deletePin,
     getAll
 }
