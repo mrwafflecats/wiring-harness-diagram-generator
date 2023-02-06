@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             // id:Number
+            errorString: "",
             pin: {
                 pinNum: '',
                 color: '',
