@@ -1,4 +1,5 @@
 <script>
+const API_URL = "http://localhost:4000/pins"
 export default{
     props: {
         initPinNum: String,
