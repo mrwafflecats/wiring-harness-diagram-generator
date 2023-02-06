@@ -4,21 +4,54 @@ export default{
         initPinNum: String,
         initColor: String,
         initDescription: String,
-        editModeProp: Boolean,
         id:{ required: true} 
     },
     emits:['delete'],
     data() {
         return {
-            // id: this.idProp,
+            errorString: "",
             pin:{
             pinNum: this.initPinNum,
             color: this.initColor,
             description: this.initDescription,
             connection: { pinNum: "", connector: "" },
-            },            
+            },
+            editMode: false
         };
     },
+    methods: {
+        ToggleEditMode() {
+            if (this.editMode) {
+                //TODO send the edited data to the server
+                fetch(API_URL, {
+                    method: "PUT",
+                    body: JSON.stringify({id: this.id, pin: this.pin}),
+                    headers: {
+                    "content-type": "application/json"//TODO: figure out what this header stuff does
+                }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.details) {
+                        //there was an error
+                        const error = result.details
+                            .map(detail => detail.pin)
+                            .join(". ")
+
+                        this.error = error
+                    } else {
+                        this.error = ""
+                        this.showMessageForm = false
+                        this.messages.push(result)
+                    }
+                })
+
+                this.editMode = false
+            }
+            else
+                this.editMode = true
+        }
+    }
 }
 </script>
 
@@ -26,20 +59,20 @@ export default{
     <div>
         <h5>Pin ID: {{ id }}</h5>
     </div>
-    <div v-if="!editModeProp">
+    <div v-if="!editMode">
         <h5>{{pin.pinNum}}</h5>
         <h5>{{pin.color}}</h5>
         <h5>{{pin.description}}</h5> 
         <h5>Connected to pin {{pin.connection.pinNum}} on connector {{pin.connection.connector}}</h5>
     </div>
 
-    <div v-if="editModeProp">
+    <div v-if="editMode">
         <input v-model="pin.pinNum">
         <input v-model="pin.color">
         <input v-model="pin.description">
         <button @click="$emit('delete')">X</button>
     </div>
-    <!-- when button is submited for edit mode, send the new data to backend,, maybe get out of editmode? -->
+    <button @click="ToggleEditMode">Edit Mode</button>
     
 </template>
 
