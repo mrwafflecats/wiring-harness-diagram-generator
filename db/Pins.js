@@ -31,7 +31,7 @@ function createPin(pin){
         return Promise.reject(result.error)
 }
 
-function updatePin(pinID, pin){
+function updatePin({pinID, pin}){
     const result = Joi.validate(pin, schema)
     if(result.error == null)
         pins.update({id:pinID}, {$set: {pinNum: pin.pinNum, color: pin.color, description: pin.description }})
