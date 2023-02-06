@@ -24,7 +24,8 @@ export default {
                 headers: {
                     "content-type": "application/json"
                 }
-            }).then(response => response.json())
+            })
+                .then(response => response.json())
                 .then(result => {
                     if (result.details) {
                         //there was an error
@@ -39,6 +40,7 @@ export default {
                         this.messages.push(result)
                     }
                 })
+                .then(this.AutoIncrement)
         },
         AutoIncrement() {
             //js is witchcraft 
@@ -62,7 +64,6 @@ export default {
                 var tempStr = tempStr.join('')
 
                 this.pin.pinNum = tempStr
-                this.emitFlag = false
             }
         }
     }
