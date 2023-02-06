@@ -23,6 +23,16 @@ app.get('/pins', (req, res) => {
   })
 })
 
+app.put('/pins', (req, res) => {
+  pins.updatePin(req.body)
+    .then((pin) => {
+      res.json(pin)
+    }).catch((error) => {
+      res.status(500)
+      res.json(error)
+    })
+})
+
 //Recieves data from a client and adds it to the database 
 app.post('/pins', (req, res) => {
   pins.createPin(req.body)
