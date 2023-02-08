@@ -17,6 +17,8 @@ export default {
             // id: '',
             // name:'',
             pins: [],
+            //since mongo automatically creates a unique id when an object is added, we can access using _id
+            //keep in mind _id is stored as an ObjectId and NOT a string
         }
     },
     mounted() {
@@ -37,7 +39,7 @@ export default {
     <h2>Connector: {{name}}</h2>
     <ul>
         <li v-for="pin in pins" :key="pin.id">
-            <Pin :id="pin.id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"/>
+            <Pin :id="pin._id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"/>
         </li>
     </ul>
 </template>
