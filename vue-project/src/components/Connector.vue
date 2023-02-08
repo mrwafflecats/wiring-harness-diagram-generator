@@ -28,11 +28,6 @@ export default {
             })
     },
     methods: {
-        DeletePin(pinId) {
-            //TODO: this will send the pin to delete to the backend
-            const id = this.pins.findIndex((pin) => pin.id === pinId)
-            this.pins.splice(id, 1)
-        },
     }
 }
 
@@ -40,12 +35,9 @@ export default {
 
 <template>
     <h2>Connector: {{name}}</h2>
-    <!-- TODO: add way to edit connectors, add connection prop  -->
     <ul>
         <li v-for="pin in pins" :key="pin.id">
-            <Pin :id="pin.id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"
-                 @delete="DeletePin(pin.id)" />
+            <Pin :id="pin.id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"/>
         </li>
     </ul>
-    <PinInput @add-pin="AddPin" />
 </template>
