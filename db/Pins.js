@@ -8,9 +8,10 @@ const db = require('./connection')
 
 const schema = Joi.object().keys({
     id: Joi.string().required(),
-    pinNum: Joi.string().required(),
-    color: Joi.string(),//if there is no color it defaults to black
-    description: Joi.string()    
+    pin:{
+        pinNum: Joi.string().required(),
+        color: Joi.string(),//if there is no color it defaults to black (in the frontend)
+        description: Joi.string()}
     //TODO: add the stuff for connection
 })
 
