@@ -3,7 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser')
 var cors = require('cors')
 
-const pins = require('./db/pins');
+const pins = require('./db/Pins');
 const app = require('../app');
 
 /* GET home page. */
