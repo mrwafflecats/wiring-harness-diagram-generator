@@ -52,3 +52,6 @@ router.delete('/pins', (req, res) => {
 })
 
 module.exports = router;
+
+//To run the server, $npm run start
+//to connect to the database, idfk google it
