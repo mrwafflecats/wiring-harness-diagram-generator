@@ -1,9 +1,6 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router();
 var bodyParser = require('body-parser')
-var cors = require('cors')
-
-const pins = require('./db/Pins');
+const pins = require('../db/Pins');
 const app = require('../app');
 
 /* GET home page. */
@@ -17,13 +14,13 @@ router.get('/', function (req, res, next) {
 //DELETE is pretty self explanatory
 
 //Gets the pins from the database and sends it to client
-app.get('/pins', (req, res) => {
+router.get('/pins', (req, res) => {
   pins.getAll().then((pins) => {
     res.json(pins)
   })
 })
 
-app.put('/pins', (req, res) => {
+router.put('/pins', (req, res) => {
   pins.updatePin(req.body)
     .then((pin) => {
       res.json(pin)
@@ -34,7 +31,7 @@ app.put('/pins', (req, res) => {
 })
 
 //Recieves data from a client and adds it to the database 
-app.post('/pins', (req, res) => {
+router.post('/pins', (req, res) => {
   pins.createPin(req.body)
     .then((pin) => {
       res.json(pin)
@@ -44,7 +41,7 @@ app.post('/pins', (req, res) => {
     })
 })
 
-app.delete('/pins', (req, res) => {
+router.delete('/pins', (req, res) => {
   pins.deletePin(req.body)
     .then((pin) => {
       res.json(pin)
@@ -55,5 +52,3 @@ app.delete('/pins', (req, res) => {
 })
 
 module.exports = router;
-
-app.listen(4000)
