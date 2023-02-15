@@ -7,11 +7,15 @@ const db = require('./connection')
 
 
 const schema = Joi.object().keys({
-    id: Joi.string().required(),
+    // id: Joi.string().required(),
     pin: {
         pinNum: Joi.string().required(),
         color: Joi.string(),//if there is no color it defaults to black (in the frontend)
-        description: Joi.string()
+        description: Joi.string(),
+        connection: {
+            pinNum: Joi.string(),
+            connector: Joi.string()
+        }
     }
     //TODO: add the stuff for connection
 })
@@ -24,7 +28,8 @@ function getAll() {
 
 function createPin(pin) {
     //validates the pin
-    const result = Joi.validate(pin, schema)
+    const result = schema.validate(pin)
+    
 
     if (result.error == null)
         pins.insert(pin)
@@ -34,7 +39,7 @@ function createPin(pin) {
 }
 
 function updatePin({ pinID, pin }) {
-    const result = Joi.validate(pin, schema)
+    const result = schema.validate(pin)
     if (result.error == null)
         pins.update({ id: pinID }, { $set: { pinNum: pin.pinNum, color: pin.color, description: pin.description } })
     else
@@ -42,7 +47,7 @@ function updatePin({ pinID, pin }) {
 }
 
 function deletePin(pin) {
-    const result = Joi.validate(pin, schema)
+    const result = schema.validate(pin)
 
     if (result.error == null)
         pins.remove(pin)
