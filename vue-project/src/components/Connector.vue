@@ -21,15 +21,15 @@ export default {
             //keep in mind _id is stored as an ObjectId and NOT a string
         }
     },
-    mounted() {
-        //gets the pins from the database
-        fetch(API_URL)
+    methods: {
+        GetPins(){
+            //gets the pins from the database
+            fetch(API_URL)
             .then(response => response.json())
             .then(result => {
                 this.pins = result
             })
-    },
-    methods: {
+        }
     }
 }
 
