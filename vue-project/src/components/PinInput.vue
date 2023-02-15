@@ -23,7 +23,8 @@ export default {
                 method: "POST",
                 body: JSON.stringify(this.pin),
                 headers: {
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    "Accept": "application/json"
                 }
             })
                 .then(response => response.json())
