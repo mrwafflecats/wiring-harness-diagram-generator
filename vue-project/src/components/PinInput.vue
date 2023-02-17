@@ -21,7 +21,7 @@ export default {
         AddPin() {
             fetch(API_URL, {
                 method: "POST",
-                body: JSON.stringify(this.pin),
+                body: JSON.stringify({pin: this.pin}),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
