@@ -13,6 +13,8 @@ router.get('/', function (req, res, next) {
 //PUT makes the server modify data sent by client, creates a new thing if it doesn't exist
 //DELETE is pretty self explanatory
 
+router.use(bodyParser.urlencoded({extended: true}))
+
 //Gets the pins from the database and sends it to client
 router.get('/pins', (req, res) => {
   pins.getAll().then((pins) => {
@@ -33,8 +35,8 @@ router.put('/pins', (req, res) => {
 //Recieves data from a client and adds it to the database 
 router.post('/pins', (req, res) => {
   pins.createPin(req.body)
-    .then((pin) => {
-      res.json(pin)
+    .then(result => {//TODO: this is causing errors, param is undefined for whatever reason
+      res.sendStatus(201) 
     }).catch((error) => {
       res.status(500)
       res.json(error)
