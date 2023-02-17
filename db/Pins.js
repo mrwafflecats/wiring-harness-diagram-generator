@@ -3,11 +3,9 @@
 
 const { func } = require('joi')
 const Joi = require('joi')
-const db = require('./connection')
-
 
 const schema = Joi.object().keys({
-    // id: Joi.string().required(),
+    id: Joi.string().required(),
     pin: {
         pinNum: Joi.string().required(),
         color: Joi.string(),//if there is no color it defaults to black (in the frontend)
@@ -20,7 +18,7 @@ const schema = Joi.object().keys({
     //TODO: add the stuff for connection
 })
 
-const pins = db.get('pins')
+var pins = []
 
 function getAll() {
     return pins.find()
@@ -32,16 +30,18 @@ function createPin(pin) {
     
 
     if (result.error == null)
-        pins.insert(pin)
+        pins.push({id: pins.length, pin: pin})
     else
         //if the pin is invalid return an error
         return Promise.reject(result.error)
 }
 
-function updatePin({ pinID, pin }) {
+function updatePin(pin) {
     const result = schema.validate(pin)
-    if (result.error == null)
-        pins.update({ id: pinID }, { $set: { pinNum: pin.pinNum, color: pin.color, description: pin.description } })
+    if (result.error == null){
+        const index = pins.findIndex((x) => x.id == pin.id)
+        pins[index]= pin
+    }
     else
         return Promise.reject(result.error)
 }
@@ -49,8 +49,12 @@ function updatePin({ pinID, pin }) {
 function deletePin(pin) {
     const result = schema.validate(pin)
 
-    if (result.error == null)
-        pins.remove(pin)
+    if (result.error == null){
+        const index = pins.findIndex((x) => x.id == pin.id)
+        var deleted  = pins.splice(index, 1)
+        if (deleted != pin) 
+            console.error("Something has gone terribly wrong with deleting \n The pin to be deleted: " + pin + "\n The pin that was deleted: " + deleted)
+    }
     else
         return Promise.reject(result.error)
 }
