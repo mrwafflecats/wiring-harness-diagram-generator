@@ -26,7 +26,20 @@ function getAll() {
 
 function createPin(pin) {
     //validates the pin
-    const result = schema.validate(pin)
+    const tempSchema = 
+    Joi.object().keys({
+        pin: {
+            pinNum: Joi.string().required(),
+            color: Joi.string(),//if there is no color it defaults to black (in the frontend)
+            description: Joi.string(),
+            connection: {
+                pinNum: Joi.string(),
+                connector: Joi.string()
+            }
+        }
+        //TODO: add the stuff for connection
+    })
+    const result = tempSchema.validate(pin)
     
 
     if (result.error == null)
