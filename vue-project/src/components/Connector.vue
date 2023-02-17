@@ -43,4 +43,5 @@ export default {
         </li>
     </ul>
     <PinInput></PinInput>
+    <button @click="GetPins">fetch pins</button>
 </template>
