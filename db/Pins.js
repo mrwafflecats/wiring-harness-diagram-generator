@@ -8,11 +8,11 @@ const schema = Joi.object().keys({
     id: Joi.string().required(),
     pin: {
         pinNum: Joi.string().required(),
-        color: Joi.string().allow(''),//if there is no color it defaults to black (in the frontend)
-        description: Joi.string().allow(''),
+        color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
+        description: Joi.string().allow(null, ''),
         connection: {
-            pinNum: Joi.string().allow(''),
-            connector: Joi.string().allow('')
+            pinNum: Joi.string().allow(null, ''),
+            connector: Joi.string().allow(null, '')
         }
     }
     //TODO: add the stuff for connection
@@ -30,11 +30,11 @@ function createPin(pin) {
     Joi.object().keys({
         pin: {
             pinNum: Joi.string().required(),
-            color: Joi.string().allow(''),//if there is no color it defaults to black (in the frontend)
-            description: Joi.string().allow(''),
+            color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
+            description: Joi.string().allow(null, ''),
             connection: {
-                pinNum: Joi.string().allow(''),
-                connector: Joi.string().allow('')
+                pinNum: Joi.string().allow(null, ''),
+                connector: Joi.string().allow(null, '')
             }
         }
         //TODO: add the stuff for connection
