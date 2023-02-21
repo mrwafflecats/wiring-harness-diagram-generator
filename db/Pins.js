@@ -21,7 +21,9 @@ const schema = Joi.object().keys({
 var pins = []
 
 function getAll() {
-    return pins.find()
+    return new Promise((resolve, reject) => {
+        resolve(pins)
+    })
 }
 
 function createPin(pin) {
@@ -35,18 +37,17 @@ function createPin(pin) {
             connection: {
                 pinNum: Joi.string().allow(null, ''),
                 connector: Joi.string().allow(null, '')
-            }
+            }   
         }
-        //TODO: add the stuff for connection
     })
-    const result = tempSchema.validate(pin)
-    
+    const result = tempSchema.validate(pin)    
 
     if (result.error == null)
         pins.push({id: pins.length, pin: pin})
     else
         //if the pin is invalid return an error
         return Promise.reject(result.error)
+    return Promise.resolve()
 }
 
 function updatePin(pin) {
@@ -57,6 +58,7 @@ function updatePin(pin) {
     }
     else
         return Promise.reject(result.error)
+    return Promise.resolve()
 }
 
 function deletePin(pin) {
@@ -65,11 +67,15 @@ function deletePin(pin) {
     if (result.error == null){
         const index = pins.findIndex((x) => x.id == pin.id)
         var deleted  = pins.splice(index, 1)
-        if (deleted != pin) 
-            console.error("Something has gone terribly wrong with deleting \n The pin to be deleted: " + pin + "\n The pin that was deleted: " + deleted)
+        if (deleted != pin) {
+            let error = "Something has gone terribly wrong with deleting \n The pin to be deleted: " + pin + "\n The pin that was deleted: " + deleted
+            console.error(error)
+            return Promise.reject(error)
+        }            
     }
     else
         return Promise.reject(result.error)
+    return Promise.resolve()
 }
 
 module.exports = {
