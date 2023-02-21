@@ -40,10 +40,9 @@ router.put('/pins', (req, res) => {
 router.post('/pins', (req, res) => {
   pins.createPin(req.body)
     .then((result) => {
-      res.sendStatus(201).send('Successfully added pin')
+      res.status(201).send('Successfully added pin')
     }).catch((error) => {
-      res.status(500)
-      res.json(error)
+      res.status(500).json(error)
     })
 })
 
@@ -51,7 +50,7 @@ router.post('/pins', (req, res) => {
 router.delete('/pins', (req, res) => {
   pins.deletePin(req.body)
     .then((pin) => {
-      res.statusCode(200).send('Successfully deleted the pin')
+      res.status(200).send('Successfully deleted the pin')
     }).catch((error) => {
       res.status(500)
       res.json(error)
