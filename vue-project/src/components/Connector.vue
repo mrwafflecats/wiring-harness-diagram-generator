@@ -11,24 +11,30 @@ export default {
         PinInput
     },
     props: ['name'],
+    computed: {
+        pins() {
+            var temp = []
+            for (var i = 0; i < this.pinswithID; i++)
+                temp.push(this.pinswithID[i].pin)
+            return temp
+        }
+    },
     data: function () {
         return {
             // TODO: auto create id
             // id: '',
             // name:'',
-            pins: [],
-            //since mongo automatically creates a unique id when an object is added, we can access using _id
-            //keep in mind _id is stored as an ObjectId and NOT a string
+            pinswithID: []
         }
     },
     methods: {
-        GetPins(){
+        GetPins() {
             //gets the pins from the database
             fetch(API_URL)
-            .then(response => response.json())
-            .then(result => {
-                this.pins = result
-            })
+                .then(response => response.json())
+                .then(result => {
+                    this.pinswithID = result
+                })
         }
     }
 }
@@ -36,10 +42,10 @@ export default {
 </script>
 
 <template>
-    <h2>Connector: {{name}}</h2>
+    <h2>Connector: {{ name }}</h2>
     <ul>
         <li v-for="pin in pins" :key="pin.id">
-            <Pin :id="pin._id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description"/>
+            <Pin :id="pin._id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description" />
         </li>
     </ul>
     <PinInput></PinInput>
