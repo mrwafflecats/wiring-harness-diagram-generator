@@ -37,9 +37,7 @@ export default {
 
                         this.error = error
                     } else {
-                        this.error = ""
-                        this.showMessageForm = false
-                        this.messages.push(result)
+                        this.error = ""                        
                     }
                 })
                 .then(this.AutoIncrement)
