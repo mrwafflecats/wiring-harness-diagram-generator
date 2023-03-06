@@ -19,6 +19,8 @@ const schema = Joi.object().keys({
 })
 
 var pins = []
+var connectors = []
+var devices = []
 
 function getAll() {
     return new Promise((resolve, reject) => {
