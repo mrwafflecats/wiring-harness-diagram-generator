@@ -11,20 +11,21 @@ export default {
         PinInput
     },
     props: ['name'],
-    computed: {
-        pins() {
-            var temp = []
-            for (var i = 0; i < this.pinswithID; i++)
-                temp.push(this.pinswithID[i].pin)
-            return temp
-        }
-    },
+
     data: function () {
         return {
             // TODO: auto create id
             // id: '',
             // name:'',
             pinswithID: []
+        }
+    },
+    computed: {
+        pins() {
+            var temp = []
+            for (var i = 0; i < this.pinswithID.length; i++)
+                temp.push(this.pinswithID[i].pin)
+            return temp
         }
     },
     methods: {
