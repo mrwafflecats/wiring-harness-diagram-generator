@@ -119,5 +119,13 @@ module.exports = {
     PinCreate,
     PinDelete,
     PinUpdate,
-    getAll
+    getAll,
+    ConCreate,
+    ConUpdate,
+    ConDelete,
+    ConGet,
+    DevCreate,
+    DevUpdate,
+    DevDelete,
+    DevGet
 }
