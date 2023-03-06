@@ -18,6 +18,7 @@ const schema = Joi.object().keys({
     //TODO: add the stuff for connection
 })
 
+//every db entry, no matter what it is, will get it's own unique id
 var pins = []
 var connectors = []
 var devices = []
@@ -31,7 +32,7 @@ function getAll() {//TODO change this to a more sensible name/method
 }
 
 function PinCreate(pin) {
-    //validates the pin
+    //TODO change the schema so it take connector and device data into account
     const tempSchema = 
     Joi.object().keys({
             pinNum: Joi.string().required(),
@@ -82,36 +83,36 @@ function PinDelete(pin) {
 
 //CONNECTOR STUFF
 
-function ConCreate(){
+function ConCreate(con){
 
 }
 
-function ConUpdate(){
+function ConUpdate(con){
 
 }
 
-function ConDelete(){
+function ConDelete(con){
 
 }
 
-function ConGet(){
+function ConGet(con){
 
 }
 
 //DEVICE STUFF
-function DevCreate(){
+function DevCreate(dev){
 
 }
 
-function DevUpdate(){
+function DevUpdate(dev){
     
 }
 
-function DevDelete(){
+function DevDelete(dev){
 
 }
 
-function DevGet(){
+function DevGet(dev){
 
 }
 
