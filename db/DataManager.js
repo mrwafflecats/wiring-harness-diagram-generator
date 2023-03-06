@@ -30,7 +30,7 @@ function getAll() {//TODO change this to a more sensible name/method
     })
 }
 
-function createPin(pin) {
+function PinCreate(pin) {
     //validates the pin
     const tempSchema = 
     Joi.object().keys({
@@ -52,7 +52,7 @@ function createPin(pin) {
     return Promise.resolve()
 }
 
-function updatePin(pin) {
+function PinUpdate(pin) {
     const result = schema.validate(pin)
     if (result.error == null){
         const index = pins.findIndex((x) => x.id == pin.id)
@@ -63,7 +63,7 @@ function updatePin(pin) {
     return Promise.resolve()
 }
 
-function deletePin(pin) {
+function PinDelete(pin) {
     const result = schema.validate(pin)
 
     if (result.error == null){
@@ -112,12 +112,12 @@ function DevDelete(){
 }
 
 function DevGet(){
-    
+
 }
 
 module.exports = {
-    createPin,
-    updatePin,
-    deletePin,
+    PinCreate,
+    PinDelete,
+    PinUpdate,
     getAll
 }

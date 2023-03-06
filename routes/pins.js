@@ -23,7 +23,7 @@ var bodyParser = require('body-parser')
   
   //Updates a pin sent by client
   router.put('/', (req, res) => {
-    DataManager.updatePin(req.body)
+    DataManager.PinUpdate(req.body)
       .then((result) => {
         res.status(201).json({string:'Successfully updated pin'})
       }).catch((error) => {
@@ -34,7 +34,7 @@ var bodyParser = require('body-parser')
   
   //Recieves pin from a client and adds it to the database 
   router.post('/', (req, res) => {
-    DataManager.createPin(req.body)
+    DataManager.PinCreate(req.body)
       .then((result) => {
         res.status(201).json({string:'Successfully added pin'})
       }).catch((error) => {
@@ -44,7 +44,7 @@ var bodyParser = require('body-parser')
   
   
   router.delete('/', (req, res) => {
-    DataManager.deletePin(req.body)
+    DataManager.PinDelete(req.body)
       .then((pin) => {
         res.status(200).json({string:'Successfully deleted the pin'})
       }).catch((error) => {
