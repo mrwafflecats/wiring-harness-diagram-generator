@@ -22,7 +22,9 @@ var pins = []
 var connectors = []
 var devices = []
 
-function getAll() {
+
+//PIN STUFF
+function getAll() {//TODO change this to a more sensible name/method
     return new Promise((resolve, reject) => {
         resolve(pins)
     })
@@ -76,6 +78,41 @@ function deletePin(pin) {
     else
         return Promise.reject(result.error)
     return Promise.resolve()
+}
+
+//CONNECTOR STUFF
+
+function ConCreate(){
+
+}
+
+function ConUpdate(){
+
+}
+
+function ConDelete(){
+
+}
+
+function ConGet(){
+
+}
+
+//DEVICE STUFF
+function DevCreate(){
+
+}
+
+function DevUpdate(){
+    
+}
+
+function DevDelete(){
+
+}
+
+function DevGet(){
+    
 }
 
 module.exports = {
