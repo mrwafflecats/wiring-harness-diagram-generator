@@ -34,6 +34,10 @@ function PinGet() {
 
 function PinCreate(pin) {
     //TODO change the schema so it take connector and device data into account
+    //pins should be created under a connector, a pin should not be created without a connector 
+    //should check if pin is not already an exact copy of another
+    //if it's not, just create the pin 
+    //if it is, get the connector and add the pin to the connector
     const tempSchema = 
     Joi.object().keys({
             pinNum: Joi.string().required(),
@@ -88,10 +92,10 @@ function PinDelete(pin) {
 
 //CONNECTOR STUFF
 //TODO add the error handling stuff
-function ConCreate(con){
+function ConCreate(conName){
     //the param should be a string that represents the connector name
     //the pins array is just an array of the id's of pins 
-    connectors.push({id: idCount, con: {name: con.name, pins: []}})
+    connectors.push({id: idCount, con: {name: con, pins: []}})
     idCount++
     return Promise.resolve()
 }
@@ -100,6 +104,10 @@ function ConUpdate(con){
     //the param should be an id and the new name 
     //should not update the pins
     let index = connectors.findIndex(x => x.id == con.id)
+    if (index == -1){
+        let error = 'No such index in Connectors'
+        return Promise.reject(error)
+    }
     connectors[index].con.name = con.name
     return Promise.resolve()
 }
@@ -108,6 +116,10 @@ function ConDelete(con){
     //the param should be an id 
     //will also delete the pin data
     let index = connectors.findIndex(x => x.id == con.id)
+    if (index == -1){
+        let error = 'No such index in Connectors'
+        return Promise.reject(error)
+    }
     connectors.splice(index, 1)
     return Promise.resolve()
 }
