@@ -22,6 +22,7 @@ const schema = Joi.object().keys({
 var pins = []
 var connectors = []
 var devices = []
+var idCount = 0
 
 
 //PIN STUFF
@@ -54,6 +55,7 @@ function PinCreate(pin) {
 }
 
 function PinUpdate(pin) {
+    
     const result = schema.validate(pin)
     if (result.error == null){
         const index = pins.findIndex((x) => x.id == pin.id)
@@ -69,7 +71,7 @@ function PinDelete(pin) {
 
     if (result.error == null){
         const index = pins.findIndex((x) => x.id == pin.id)
-        var deleted  = pins.splice(index, 1)
+        let deleted  = pins.splice(index, 1)
         if (deleted != pin) {
             let error = "Something has gone terribly wrong with deleting \n The pin to be deleted: " + pin + "\n The pin that was deleted: " + deleted
             console.error(error)
@@ -84,15 +86,17 @@ function PinDelete(pin) {
 //CONNECTOR STUFF
 
 function ConCreate(con){
-
+    //TODO do validation
+    connectors.push({id: idCount, con: {name: con.name, pins: []}})
+    idCount++
 }
 
 function ConUpdate(con){
-
+//should not update the pins
 }
 
 function ConDelete(con){
-
+//will also delete the pins
 }
 
 function ConGet(con){
