@@ -124,12 +124,13 @@ function ConDelete(con){
     return Promise.resolve()
 }
 
-function ConGet(con){
+function ConGet(){
     return new Promise((resolve, reject) => {
         resolve(connectors)
     })
-    //returns all connectors across all devices
 }
+
+
 
 //DEVICE STUFF
 
