@@ -130,7 +130,11 @@ function ConGet(){
     })
 }
 
-
+//adds a pin from pins to the connector pin array
+function ConAddPin(conID, pinIndex){
+    let conIndex = connectors.findIndex(x => x.id == conID)
+    connectors[conIndex].con.pins.push(pins[pinIndex].id)
+}
 
 //DEVICE STUFF
 
