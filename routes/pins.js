@@ -12,7 +12,7 @@ var bodyParser = require('body-parser')
 
 
   router.get('/', (req, res) => {
-    DataManager.getAll().then((pins) => {
+    DataManager.PinGet().then((pins) => {
       res.json(pins)
     })
     .catch((error) => {
