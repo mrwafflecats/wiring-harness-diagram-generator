@@ -26,7 +26,7 @@ var idCount = 0
 
 
 //PIN STUFF
-function getAll() {//TODO change this to a more sensible name/method
+function PinGet() {
     return new Promise((resolve, reject) => {
         resolve(pins)
     })
@@ -46,8 +46,11 @@ function PinCreate(pin) {
     })
     const result = tempSchema.validate(pin)    
 
-    if (result.error == null)
-        pins.push({id: pins.length, pin: pin})
+    if (result.error == null){
+        pins.push({id: idCount, pin: pin})
+        idCount++
+    }
+
     else
         //if the pin is invalid return an error
         return Promise.reject(result.error)
@@ -84,26 +87,40 @@ function PinDelete(pin) {
 }
 
 //CONNECTOR STUFF
-
+//TODO add the error handling stuff
 function ConCreate(con){
-    //TODO do validation
+    //the param should be a string that represents the connector name
+    //the pins array is just an array of the id's of pins 
     connectors.push({id: idCount, con: {name: con.name, pins: []}})
     idCount++
+    return Promise.resolve()
 }
 
 function ConUpdate(con){
-//should not update the pins
+    //the param should be an id and the new name 
+    //should not update the pins
+    let index = connectors.findIndex(x => x.id == con.id)
+    connectors[index].con.name = con.name
+    return Promise.resolve()
 }
 
 function ConDelete(con){
-//will also delete the pins
+    //the param should be an id 
+    //will also delete the pin data
+    let index = connectors.findIndex(x => x.id == con.id)
+    connectors.splice(index, 1)
+    return Promise.resolve()
 }
 
 function ConGet(con){
-
+    return new Promise((resolve, reject) => {
+        resolve(connectors)
+    })
+    //returns all connectors across all devices
 }
 
 //DEVICE STUFF
+
 function DevCreate(dev){
 
 }
@@ -124,7 +141,7 @@ module.exports = {
     PinCreate,
     PinDelete,
     PinUpdate,
-    getAll,
+    PinGet,
     ConCreate,
     ConUpdate,
     ConDelete,
