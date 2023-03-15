@@ -138,8 +138,9 @@ function ConAddPin(conID, pinIndex){
 
 //DEVICE STUFF
 
-function DevCreate(dev){
-
+function DevCreate(devName){
+    devices.push({id: idCount, device:{name: devName, connectors:[]}})
+    idCount++
 }
 
 function DevUpdate(dev){
