@@ -54,7 +54,11 @@ function PinCreate(newPin) {
     if (result.error == null){
         let existingPinIndex = pins.findIndex(x => x.pin == newPin.pin)
         if(existingPinIndex != -1)
-            ConAddPin(newPin.connecterID, existingPinIndex)
+            ConAddPin(newPin.connecterID, existingPinIndex).then(x => {
+                return Promise.resolve()
+            }).catch(error =>{
+                return Promise.reject(error)
+            })
         else{
             pins.push({id: idCount, pin: newPin})
             idCount++ 
@@ -110,7 +114,7 @@ function ConUpdate(con){
     //should not update the pins
     let index = connectors.findIndex(x => x.id == con.id)
     if (index == -1){
-        let error = 'No such ID in connectors'
+        let error = 'No such ID in connectors to update'
         return Promise.reject(error)
     }
     connectors[index].connecter.name = con.name
@@ -122,7 +126,7 @@ function ConDelete(con){
     //will also delete the pin data
     let index = connectors.findIndex(x => x.id == con.id)
     if (index == -1){
-        let error = 'No such ID in connectors'
+        let error = 'No such ID in connectors to delete'
         return Promise.reject(error)
     }
     connectors.splice(index, 1)
@@ -138,7 +142,11 @@ function ConGet(){
 //adds a pin from pins to the connector pin array
 function ConAddPin(conID, pinIndex){
     let conIndex = connectors.findIndex(x => x.id == conID)
+    if (conIndex == -1)
+        return Promise.reject('No such ID in connectors (ConAddPin())')
+    
     connectors[conIndex].con.pins.push(pins[pinIndex].id)
+    return Promise.resolve()
 }
 
 //DEVICE STUFF
