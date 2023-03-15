@@ -3,6 +3,7 @@
 const API_URL = "http://localhost:4000/pins"
 export default {
     emits: ['addPin'],
+    props:{connectorID: String},
     data() {
         return {
             // id:Number
@@ -21,7 +22,7 @@ export default {
         AddPin() {
             fetch(API_URL, {
                 method: "POST",
-                body: JSON.stringify(this.pin),
+                body: JSON.stringify({pin:this.pin, connectorID: this.connectorID}),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
