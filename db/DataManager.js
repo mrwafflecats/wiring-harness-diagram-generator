@@ -163,8 +163,10 @@ function DevDelete(dev){
     return Promise.resolve()
 }
 
-function DevGet(dev){
-
+function DevGet(){
+    return new Promise((resolve, reject) => {
+        resolve(devices)
+    })
 }
 
 module.exports = {
