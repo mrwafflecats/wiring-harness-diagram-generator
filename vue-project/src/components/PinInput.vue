@@ -3,7 +3,7 @@
 const API_URL = "http://localhost:4000/pins"
 export default {
     emits: ['addPin'],
-    props:{connectorID: String},
+    props:{connectorID: Number},
     data() {
         return {
             // id:Number
