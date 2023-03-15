@@ -95,7 +95,7 @@ function PinDelete(pin) {
 function ConCreate(conName){
     //the param should be a string that represents the connector name
     //the pins array is just an array of the id's of pins 
-    connectors.push({id: idCount, con: {name: con, pins: []}})
+    connectors.push({id: idCount, connector: {name: conName, pins: []}})
     idCount++
     return Promise.resolve()
 }
@@ -108,7 +108,7 @@ function ConUpdate(con){
         let error = 'No such index in Connectors'
         return Promise.reject(error)
     }
-    connectors[index].con.name = con.name
+    connectors[index].connecter.name = con.name
     return Promise.resolve()
 }
 
@@ -117,7 +117,7 @@ function ConDelete(con){
     //will also delete the pin data
     let index = connectors.findIndex(x => x.id == con.id)
     if (index == -1){
-        let error = 'No such index in Connectors'
+        let error = 'No such ID in Connectors'
         return Promise.reject(error)
     }
     connectors.splice(index, 1)
@@ -144,7 +144,13 @@ function DevCreate(devName){
 }
 
 function DevUpdate(dev){
-    
+    let index = devices.findIndex(x => x.id == dev.id)
+    if (index == -1){
+        let error = 'No such ID in devices'
+        return Promise.reject(error)
+    }
+    devices[index].device.name = dev.name
+    return Promise.resolve()
 }
 
 function DevDelete(dev){
