@@ -10,11 +10,13 @@ export default {
         Pin,
         PinInput
     },
-    props: ['name'],
+    props: {
+        name: String,
+        id: Number
+    },
 
     data: function () {
         return {
-            // TODO: auto create id
             // id: '',
             // name:'',
             pinswithID: []
@@ -49,6 +51,6 @@ export default {
             <Pin :id="pin._id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description" />
         </li>
     </ul>
-    <PinInput></PinInput>
+    <PinInput :connector-i-d="id"></PinInput>
     <button @click="GetPins">fetch pins</button>
 </template>
