@@ -105,7 +105,7 @@ function ConUpdate(con){
     //should not update the pins
     let index = connectors.findIndex(x => x.id == con.id)
     if (index == -1){
-        let error = 'No such index in Connectors'
+        let error = 'No such ID in connectors'
         return Promise.reject(error)
     }
     connectors[index].connecter.name = con.name
@@ -117,7 +117,7 @@ function ConDelete(con){
     //will also delete the pin data
     let index = connectors.findIndex(x => x.id == con.id)
     if (index == -1){
-        let error = 'No such ID in Connectors'
+        let error = 'No such ID in connectors'
         return Promise.reject(error)
     }
     connectors.splice(index, 1)
@@ -154,7 +154,13 @@ function DevUpdate(dev){
 }
 
 function DevDelete(dev){
-
+    let index = devices.findIndex(x => x.id == dev.id)
+    if (index == -1){
+        let error = 'No such ID in devices'
+        return Promise.reject(error)
+    }
+    devices.splice(index, 1)
+    return Promise.resolve()
 }
 
 function DevGet(dev){
