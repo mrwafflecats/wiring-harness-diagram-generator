@@ -3,7 +3,7 @@ import Pin from './Pin.vue'
 import PinInput from './PinInput.vue'
 
 //url to backend 
-const API_URL = "http://localhost:4000/pins"
+const API_URL = "http://localhost:4000/connectors"
 
 export default {
     components: {
