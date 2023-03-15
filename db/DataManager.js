@@ -32,29 +32,34 @@ function PinGet() {
     })
 }
 
-function PinCreate(pin) {
-    //TODO change the schema so it take connector and device data into account
+function PinCreate(newPin) {
+    //TODO change the schema so it take connector into account 
     //pins should be created under a connector, a pin should not be created without a connector 
     //should check if pin is not already an exact copy of another
     //if it's not, just create the pin 
     //if it is, get the connector and add the pin to the connector
     const tempSchema = 
     Joi.object().keys({
-            pinNum: Joi.string().required(),
+        pin:{pinNum: Joi.string().required(),
             color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
             description: Joi.string().allow(null, ''),
             connection: {
                 pinNum: Joi.string().allow(null, ''),
-                connector: Joi.string().allow(null, '')
-        }
+                connector: Joi.string().allow(null, '')}            
+        },
+        connecterID: Joi.number().required()
     })
-    const result = tempSchema.validate(pin)    
+    const result = tempSchema.validate(newPin)    
 
     if (result.error == null){
-        pins.push({id: idCount, pin: pin})
-        idCount++
+        let existingPinIndex = pins.findIndex(x => x.pin == newPin.pin)
+        if(existingPinIndex != -1)
+            ConAddPin(newPin.connecterID, existingPinIndex)
+        else{
+            pins.push({id: idCount, pin: newPin})
+            idCount++ 
+        }
     }
-
     else
         //if the pin is invalid return an error
         return Promise.reject(result.error)
