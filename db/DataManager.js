@@ -26,9 +26,16 @@ var idCount = 0
 
 
 //PIN STUFF
-function PinGet() {
+function PinGet(conID) {
     return new Promise((resolve, reject) => {
-        resolve(pins)
+        let conIndex = connectors.findIndex(x => x.id == conID.id)
+        if (conIndex == -1)
+            reject("No such connector id")        
+        else{
+            let pinIDs = connectors[conIndex].connector.pins
+            let pinstosend = pins.filter(pin => pinIDs.includes(pin.id) )
+            resolve(pinstosend)
+        }
     })
 }
 
