@@ -17,14 +17,6 @@ export default{
             connectorswithID:[]
         }
     },
-    computed:{
-        connectors(){
-            let temp = []
-            for (var i = 0; i < this.connectorswithID.length; i++)
-                temp.push(this.connectorswithID[i].connector)
-            return temp
-        }
-    },
     methods:{
         AddConnector(name){
             fetch(API_Connectors, {
@@ -63,7 +55,7 @@ export default{
 
 <template>
 <h2>Device: {{this.name}}</h2>
-<li v-for="connector in connectors"><Connector :name="connector.name"/></li>
+<li v-for="connector in connectorswithID"><Connector :name="connector.connector.name" :id="connector.id"/></li>
 <!-- TODO add a way to create new connectors -->
 <input v-model="connectorInput" placeholder="Connector Name">
 <button @click="AddConnector(connectorInput)">Add Connector</button>
