@@ -48,8 +48,8 @@ export default {
 <template>
     <h2>Connector: {{ name }}</h2>
     <ul>
-        <li v-for="pin in pins" :key="pin.id">
-            <Pin :id="pin._id" :init-pin-num="pin.pinNum" :init-color="pin.color" :init-description="pin.description" />
+        <li v-for="p in pinswithID" :key="p.id">
+            <Pin :init-pin-num="p.pin.pinNum" :init-color="p.pin.color" :init-description="p.pin.description" :id="p.id" />
         </li>
     </ul>
     <PinInput :connector-i-d="id"></PinInput>
