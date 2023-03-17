@@ -25,7 +25,7 @@ var bodyParser = require('body-parser')
   router.put('/', (req, res) => {
     DataManager.DevUpdate(req.body)
       .then((result) => {
-        res.status(201).json({string:'Successfully updated pin'})
+        res.status(201).json({string:'Successfully updated device'})
       }).catch((error) => {
         res.status(500)
         res.json(error)
@@ -36,7 +36,7 @@ var bodyParser = require('body-parser')
   router.post('/', (req, res) => {
     DataManager.DevCreate(req.body)
       .then((result) => {
-        res.status(201).json({string:'Successfully added pin'})
+        res.status(201).json({string:'Successfully added device'})
       }).catch((error) => {
         res.status(500).json(error)
       })
@@ -46,7 +46,7 @@ var bodyParser = require('body-parser')
   router.delete('/', (req, res) => {
     DataManager.DevDelete(req.body)
       .then((pin) => {
-        res.status(200).json({string:'Successfully deleted the pin'})
+        res.status(200).json({string:'Successfully deleted device'})
       }).catch((error) => {
         res.status(500)
         res.json(error)
