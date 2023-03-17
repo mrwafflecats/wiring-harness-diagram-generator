@@ -54,20 +54,16 @@ function PinCreate(newPin) {
     if (result.error == null){
         let existingPinIndex = pins.findIndex(x => x.pin == newPin.pin)
         if(existingPinIndex != -1)
-            ConAddPin(newPin.connecterID, existingPinIndex).then(x => {
-                return Promise.resolve()
-            }).catch(error =>{
-                return Promise.reject(error)
-            })
+            return ConAddPin(newPin.connecterID, existingPinIndex)
         else{
             pins.push({id: idCount, pin: newPin})
             idCount++ 
+            return ConAddPin(newPin.connectorID, pins.length - 1)
         }
     }
     else
         //if the pin is invalid return an error
         return Promise.reject(result.error)
-    return Promise.resolve()
 }
 
 function PinUpdate(pin) {
