@@ -104,7 +104,7 @@ function PinDelete(pin) {
 function ConCreate(conName){
     //the param should be a string that represents the connector name
     //the pins array is just an array of the id's of pins 
-    connectors.push({id: idCount, connector: {name: conName, pins: []}})
+    connectors.push({id: idCount, connector: {name: conName.name, pins: []}})
     idCount++
     return Promise.resolve()
 }
@@ -154,6 +154,7 @@ function ConAddPin(conID, pinIndex){
 function DevCreate(devName){
     devices.push({id: idCount, device:{name: devName, connectors:[]}})
     idCount++
+    return Promise.resolve()
 }
 
 function DevUpdate(dev){
