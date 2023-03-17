@@ -33,7 +33,7 @@ function PinGet() {
 }
 
 function PinCreate(newPin) {
-    //TODO change the schema so it take connector into account 
+    //TODO add the pin to the connector
     //pins should be created under a connector, a pin should not be created without a connector 
     //should check if pin is not already an exact copy of another
     //if it's not, just create the pin 
@@ -47,7 +47,7 @@ function PinCreate(newPin) {
                 pinNum: Joi.string().allow(null, ''),
                 connector: Joi.string().allow(null, '')}            
         },
-        connecterID: Joi.number().required()
+        connectorID: Joi.number().required()
     })
     const result = tempSchema.validate(newPin)    
 
