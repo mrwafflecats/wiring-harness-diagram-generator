@@ -59,4 +59,5 @@ export default{
 <!-- TODO add a way to create new connectors -->
 <input v-model="connectorInput" placeholder="Connector Name">
 <button @click="AddConnector(connectorInput)">Add Connector</button>
+<button @click="GetConnectors()">Get connectors</button>
 </template>
