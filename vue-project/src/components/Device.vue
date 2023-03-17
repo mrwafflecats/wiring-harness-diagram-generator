@@ -43,7 +43,8 @@ export default{
 
                         this.error = error
                     } else {
-                        this.error = ""                        
+                        this.error = ""
+                        this.GetConnectors()
                     }
             })
         },
@@ -60,7 +61,7 @@ export default{
 
 <template>
 <h2>Device: {{this.name}}</h2>
-<li v-for="connector in connectors"><Connector :name="connector"/></li>
+<li v-for="connector in connectors"><Connector :name="connector.name"/></li>
 <!-- TODO add a way to create new connectors -->
 <input v-model="connectorInput" placeholder="Connector Name">
 <button @click="AddConnector(connectorInput)">Add Connector</button>
