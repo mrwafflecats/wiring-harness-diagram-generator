@@ -1,6 +1,6 @@
 <script>
 //url to backend
-const API_URL = "http://localhost:4000/pins"
+const API_Pins = "http://localhost:4000/pins"
 export default {
     emits: ['addPin'],
     props:{connectorID: Number},
@@ -20,7 +20,7 @@ export default {
 
     methods: {
         AddPin() {
-            fetch(API_URL, {
+            fetch(API_Pins, {
                 method: "POST",
                 body: JSON.stringify({pin:this.pin, connectorID: this.connectorID}),
                 headers: {

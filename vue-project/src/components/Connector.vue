@@ -3,7 +3,8 @@ import Pin from './Pin.vue'
 import PinInput from './PinInput.vue'
 
 //url to backend 
-const API_URL = "http://localhost:4000/connectors"
+const API_Pins = "http://localhost:4000/pins"
+const API_Connectors = "http://localhost:4000/connectors"
 
 export default {
     components: {
@@ -33,7 +34,7 @@ export default {
     methods: {
         GetPins() {
             //gets the pins from the database
-            fetch(API_URL)
+            fetch(API_Pins)
                 .then(response => response.json())
                 .then(result => {
                     this.pinswithID = result

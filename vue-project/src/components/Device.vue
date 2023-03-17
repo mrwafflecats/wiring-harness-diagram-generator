@@ -1,7 +1,8 @@
 <script>
 import Connector from "./Connector.vue"
 
-const API_URL = "http://localhost:4000/devices"
+const API_Devices = "http://localhost:4000/devices"
+const API_Connectors = "http://localhost:4000/connectors"
 
 export default{
     components:{
@@ -26,9 +27,9 @@ export default{
     },
     methods:{
         AddConnector(name){
-            fetch(API_URL, {
+            fetch(API_Connectors, {
                 method: "POST",
-                body: name,
+                body: JSON.stringify({name: name}),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
@@ -49,7 +50,8 @@ export default{
             })
         },
         GetConnectors(){
-            fetch(API_URL)
+            //TODO get connectors that are associated with this device only
+            fetch(API_Connectors)
                 .then(response => response.json())
                 .then(result => {
                     this.connectorswithID = result
