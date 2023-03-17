@@ -79,9 +79,6 @@ export default {
 </script>
 
 <template>
-    <div>
-        <h5>Pin ID: {{ id }}</h5>
-    </div>
     <div v-if="!editMode">
         <h5>{{ pin.pinNum }}</h5>
         <h5>{{ pin.color }}</h5>
