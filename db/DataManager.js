@@ -148,7 +148,7 @@ function ConAddPin(conID, pinIndex){
     if (conIndex == -1)
         return Promise.reject('No such ID in connectors (ConAddPin())')
     
-    connectors[conIndex].con.pins.push(pins[pinIndex].id)
+    connectors[conIndex].connector.pins.push(pins[pinIndex].id)
     return Promise.resolve()
 }
 
