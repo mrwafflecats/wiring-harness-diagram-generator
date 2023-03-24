@@ -87,20 +87,18 @@ function PinUpdate(pin) {
 }
 
 function PinDelete(pin) {
-    const result = schema.validate(pin)
 
-    if (result.error == null){
         const index = pins.findIndex((x) => x.id == pin.id)
-        let deleted  = pins.splice(index, 1)
-        if (deleted != pin) {
-            let error = "Something has gone terribly wrong with deleting \n The pin to be deleted: " + pin + "\n The pin that was deleted: " + deleted
-            console.error(error)
+
+        if (index == -1){
+            let error = 'No such ID in pins to delete'
             return Promise.reject(error)
-        }            
-    }
-    else
-        return Promise.reject(result.error)
-    return Promise.resolve()
+        }
+        else{
+            let deleted  = pins.splice(index, 1)
+            return Promise.resolve("Pin deleted: " + deleted)
+        }           
+
 }
 
 //CONNECTOR STUFF
