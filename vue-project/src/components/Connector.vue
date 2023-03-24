@@ -52,6 +52,5 @@ export default {
             <Pin :init-pin-num="p.pin.pinNum" :init-color="p.pin.color" :init-description="p.pin.description" :id="p.id" />
         </li>
     </ul>
-    <PinInput :connector-i-d="id"></PinInput>
-    <button @click="GetPins">fetch pins</button>
+    <PinInput :connector-i-d="id" @add-pin="GetPins"></PinInput>
 </template>

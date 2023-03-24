@@ -41,6 +41,7 @@ export default {
                         this.error = ""                        
                     }
                 })
+                .then(this.$emit('addPin'))
                 .then(this.AutoIncrement)
         },
         AutoIncrement() {
