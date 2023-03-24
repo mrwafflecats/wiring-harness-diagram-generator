@@ -56,7 +56,7 @@ export default {
         Delete() {
             fetch(API_URL, {
                 method: "DELETE",
-                body: JSON.stringify({ id: this.id, pin: this.pin }),
+                body: JSON.stringify({ id: this.id }),
                 headers: {
                     "content-type": "application/json"//TODO: figure out what this header stuff does
                 }
@@ -75,6 +75,7 @@ export default {
                         this.messages.push(result)
                     }
                 })
+                .then(this.$emit('editPin'))
         }
     }
 }
