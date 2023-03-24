@@ -1,6 +1,7 @@
 <script>
 const API_URL = "http://localhost:4000/pins"
 export default {
+    emits: ['editPin'],
     props: {
         initPinNum: String,
         initColor: String,
@@ -45,6 +46,7 @@ export default {
                             this.messages.push(result)
                         }
                     })
+                    .then(this.$emit("editPin"))
 
                 this.editMode = false
             }
