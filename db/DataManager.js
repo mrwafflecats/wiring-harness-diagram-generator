@@ -5,7 +5,7 @@ const { func } = require('joi')
 const Joi = require('joi')
 
 const schema = Joi.object().keys({
-    id: Joi.string().required(),
+    id: Joi.number().required(),
     pin: {
         pinNum: Joi.string().required(),
         color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
