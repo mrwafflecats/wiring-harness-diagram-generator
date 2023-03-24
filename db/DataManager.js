@@ -64,7 +64,7 @@ function PinCreate(newPin) {
         if(existingPinIndex != -1)
             return ConAddPin(newPin.connecterID, existingPinIndex)
         else{
-            pins.push({id: idCount, pin: newPin})
+            pins.push({id: idCount, pin: newPin.pin})
             idCount++ 
             return ConAddPin(newPin.connectorID, pins.length - 1)
         }
