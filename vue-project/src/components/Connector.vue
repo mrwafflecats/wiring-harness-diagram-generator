@@ -34,7 +34,7 @@ export default {
     methods: {
         GetPins() {
             //gets the pins from the database
-            fetch(API_Pins)
+            fetch(API_Pins + '/' + this.id)
                 .then(response => response.json())
                 .then(result => {
                     this.pinswithID = result
