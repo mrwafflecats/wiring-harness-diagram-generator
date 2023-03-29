@@ -55,7 +55,29 @@ export default{
                 })
         },
         DeleteDevice(){
+            fetch(API_Devices, {
+                method: "DELETE",
+                body: JSON.stringify({id: this.id}),
+                headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+            .then(response => response.json())
+                .then(result => {
+                    if (result.details) {
+                        const error = result.details
+                            .map(detail => detail.pin)
+                            .join(". ")
 
+                        this.error = error
+                    } else {
+                        this.error = ""
+                        this.showMessageForm = false
+                        this.messages.push(result)
+                    }
+                })
+                .then(this.$emit('editDev'))
         },
         UpdateDevice(){
             fetch(API_Devices, {
