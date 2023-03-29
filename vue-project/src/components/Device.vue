@@ -15,8 +15,6 @@ export default{
     data(){
         return{
             error: '',
-            id:'',
-            name:'dev 1',
             connectorInput:'',
             connectorswithID:[]
         }
