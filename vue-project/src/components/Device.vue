@@ -8,6 +8,10 @@ export default{
     components:{
         Connector
     },
+    props: {
+        id: Number,
+        name: String
+    },
     data(){
         return{
             error: '',
