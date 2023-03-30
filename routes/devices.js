@@ -2,7 +2,6 @@ var router = require('express').Router();
 const DataManager = require('../db/DataManager');
 var bodyParser = require('body-parser')
 /* GET home page. */
-// TODO: have this post the vue project
   //get is for retrieving data
   //POST makes the server take data sent by a client 
   //PUT makes the server modify data sent by client, creates a new thing if it doesn't exist
@@ -11,8 +10,8 @@ var bodyParser = require('body-parser')
   router.use(bodyParser.urlencoded({extended: true}))
 
 
-  router.get('/', (req, res) => {
-    DataManager.DevGet().then((pins) => {
+  router.get('/:devID', (req, res) => {
+    DataManager.DevGet(req.params).then((pins) => {
       res.json(pins)
     })
     .catch((error) => {
