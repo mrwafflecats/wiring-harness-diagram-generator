@@ -47,8 +47,7 @@ export default{
             })
         },
         GetConnectors(){
-            //TODO get connectors that are associated with this device only
-            fetch(API_Connectors+ '/' + this.id)//TODO set this up in Datamanager api so it takes id in route url
+            fetch(API_Connectors+ '/' + this.id)
                 .then(response => response.json())
                 .then(result => {
                     this.connectorswithID = result

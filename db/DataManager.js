@@ -35,7 +35,7 @@ function PinGet(conID) {
         else{
             let pinIDs = connectors[conIndex].connector.pins
             let pinstosend = pins.filter(pin => pinIDs.includes(pin.id) )
-            resolve(pinstosend)
+            resolve(pinstoSend)
         }
     })
 }
@@ -179,9 +179,17 @@ function DevDelete(dev){
     return Promise.resolve()
 }
 
-//TODO finish this
 function DevGet(devID){
     return new Promise((resolve, reject) => {
+        let id = devID.id
+        let devIndex = devices.findIndex(x => x.id == id)
+        if (devIndex == -1)
+        reject("No such device id")
+        else{
+            let conIDs = devices[devIndex].device.connectors
+            let constoSend = connectors.filter(con => conIDs.includes(con.id))
+            resolve(constoSend)
+        }
         resolve(devices)
     })
 }
