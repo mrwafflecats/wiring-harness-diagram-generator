@@ -181,15 +181,6 @@ function DevDelete(dev){
 
 function DevGet(devID){
     return new Promise((resolve, reject) => {
-        let id = devID.id
-        let devIndex = devices.findIndex(x => x.id == id)
-        if (devIndex == -1)
-        reject("No such device id")
-        else{
-            let conIDs = devices[devIndex].device.connectors
-            let constoSend = connectors.filter(con => conIDs.includes(con.id))
-            resolve(constoSend)
-        }
         resolve(devices)
     })
 }
