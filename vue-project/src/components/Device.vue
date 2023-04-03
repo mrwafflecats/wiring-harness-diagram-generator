@@ -47,7 +47,7 @@ export default{
             })
         },
         GetConnectors(){
-            fetch(API_Connectors+ '/' + this.id)
+            fetch(API_Connectors + '/' + this.id)
                 .then(response => response.json())
                 .then(result => {
                     this.connectorswithID = result
