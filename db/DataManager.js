@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
     id: Joi.number().required(),
     pin: {
         pinNum: Joi.string().required(),
-        color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
+        color: Joi.string().allow(null, ''),//if there is no color it defaults to black (in the frontend)
         description: Joi.string().allow(null, ''),
         connection: {
             pinNum: Joi.string().allow(null, ''),
@@ -31,10 +31,10 @@ function PinGet(conID) {
         let id = conID.conID
         let conIndex = connectors.findIndex(x => x.id == id)
         if (conIndex == -1)
-            reject("No such connector id")        
-        else{
+            reject("No such connector id")
+        else {
             let pinIDs = connectors[conIndex].connector.pins
-            let pinstosend = pins.filter(pin => pinIDs.includes(pin.id) )
+            let pinstoSend = pins.filter(pin => pinIDs.includes(pin.id))
             resolve(pinstoSend)
         }
     })
@@ -46,26 +46,28 @@ function PinCreate(newPin) {
     //should check if pin is not already an exact copy of another
     //if it's not, just create the pin 
     //if it is, get the connector and add the pin to the connector
-    const tempSchema = 
-    Joi.object().keys({
-        pin:{pinNum: Joi.string().required(),
-            color: Joi.string().allow(null,''),//if there is no color it defaults to black (in the frontend)
-            description: Joi.string().allow(null, ''),
-            connection: {
-                pinNum: Joi.string().allow(null, ''),
-                connector: Joi.string().allow(null, '')}            
-        },
-        connectorID: Joi.number().required()
-    })
-    const result = tempSchema.validate(newPin)    
+    const tempSchema =
+        Joi.object().keys({
+            pin: {
+                pinNum: Joi.string().required(),
+                color: Joi.string().allow(null, ''),//if there is no color it defaults to black (in the frontend)
+                description: Joi.string().allow(null, ''),
+                connection: {
+                    pinNum: Joi.string().allow(null, ''),
+                    connector: Joi.string().allow(null, '')
+                }
+            },
+            connectorID: Joi.number().required()
+        })
+    const result = tempSchema.validate(newPin)
 
-    if (result.error == null){
+    if (result.error == null) {
         let existingPinIndex = pins.findIndex(x => x.pin == newPin.pin)
-        if(existingPinIndex != -1)
+        if (existingPinIndex != -1)
             return ConAddPin(newPin.connecterID, existingPinIndex)
-        else{
-            pins.push({id: idCount, pin: newPin.pin})
-            idCount++ 
+        else {
+            pins.push({ id: idCount, pin: newPin.pin })
+            idCount++
             return ConAddPin(newPin.connectorID, pins.length - 1)
         }
     }
@@ -75,11 +77,11 @@ function PinCreate(newPin) {
 }
 
 function PinUpdate(pin) {
-    
+
     const result = schema.validate(pin)
-    if (result.error == null){
+    if (result.error == null) {
         const index = pins.findIndex((x) => x.id == pin.id)
-        pins[index]= pin
+        pins[index] = pin
     }
     else
         return Promise.reject(result.error)
@@ -88,34 +90,34 @@ function PinUpdate(pin) {
 
 function PinDelete(pin) {
 
-        const index = pins.findIndex((x) => x.id == pin.id)
+    const index = pins.findIndex((x) => x.id == pin.id)
 
-        if (index == -1){
-            let error = 'No such ID in pins to delete'
-            return Promise.reject(error)
-        }
-        else{
-            let deleted  = pins.splice(index, 1)
-            return Promise.resolve("Pin deleted: " + deleted)
-        }           
+    if (index == -1) {
+        let error = 'No such ID in pins to delete'
+        return Promise.reject(error)
+    }
+    else {
+        let deleted = pins.splice(index, 1)
+        return Promise.resolve("Pin deleted: " + deleted)
+    }
 
 }
 
 //CONNECTOR STUFF
 //TODO add the error handling stuff
-function ConCreate(conName){
+function ConCreate(conName) {
     //the param should be a string that represents the connector name
     //the pins array is just an array of the id's of pins 
-    connectors.push({id: idCount, connector: {name: conName.name, pins: []}})
+    connectors.push({ id: idCount, connector: { name: conName.name, pins: [] } })
     idCount++
     return Promise.resolve()
 }
 
-function ConUpdate(con){
+function ConUpdate(con) {
     //the param should be an id and the new name 
     //should not update the pins
     let index = connectors.findIndex(x => x.id == con.id)
-    if (index == -1){
+    if (index == -1) {
         let error = 'No such ID in connectors to update'
         return Promise.reject(error)
     }
@@ -123,11 +125,11 @@ function ConUpdate(con){
     return Promise.resolve()
 }
 
-function ConDelete(con){
+function ConDelete(con) {
     //the param should be an id 
     //will also delete the pin data
     let index = connectors.findIndex(x => x.id == con.id)
-    if (index == -1){
+    if (index == -1) {
         let error = 'No such ID in connectors to delete'
         return Promise.reject(error)
     }
@@ -135,33 +137,42 @@ function ConDelete(con){
     return Promise.resolve()
 }
 
-function ConGet(){
+function ConGet(conID) {
     return new Promise((resolve, reject) => {
-        resolve(connectors)
+        let id = conID.id
+        let devIndex = devices.findIndex(x => x.id == id)
+        if (devIndex == -1)
+            reject("No such device id")
+        else {
+            let conIDs = devices[devIndex].device.connectors
+            let constoSend = connectors.filter(con => conIDs.includes(con.id))
+            resolve(constoSend)
+        }
+
     })
 }
 
 //adds a pin from pins to the connector pin array
-function ConAddPin(conID, pinIndex){
+function ConAddPin(conID, pinIndex) {
     let conIndex = connectors.findIndex(x => x.id == conID)
     if (conIndex == -1)
         return Promise.reject('No such ID in connectors (ConAddPin())')
-    
+
     connectors[conIndex].connector.pins.push(pins[pinIndex].id)
     return Promise.resolve()
 }
 
 //DEVICE STUFF
 
-function DevCreate(devName){
-    devices.push({id: idCount, device:{name: devName, connectors:[]}})
+function DevCreate(devName) {
+    devices.push({ id: idCount, device: { name: devName, connectors: [] } })
     idCount++
     return Promise.resolve()
 }
 
-function DevUpdate(dev){
+function DevUpdate(dev) {
     let index = devices.findIndex(x => x.id == dev.id)
-    if (index == -1){
+    if (index == -1) {
         let error = 'No such ID in devices'
         return Promise.reject(error)
     }
@@ -169,9 +180,9 @@ function DevUpdate(dev){
     return Promise.resolve()
 }
 
-function DevDelete(dev){
+function DevDelete(dev) {
     let index = devices.findIndex(x => x.id == dev.id)
-    if (index == -1){
+    if (index == -1) {
         let error = 'No such ID in devices'
         return Promise.reject(error)
     }
@@ -179,7 +190,7 @@ function DevDelete(dev){
     return Promise.resolve()
 }
 
-function DevGet(devID){
+function DevGet(devID) {
     return new Promise((resolve, reject) => {
         resolve(devices)
     })
