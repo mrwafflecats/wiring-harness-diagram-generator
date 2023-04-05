@@ -10,7 +10,7 @@ var bodyParser = require('body-parser')
   router.use(bodyParser.urlencoded({extended: true}))
 
 
-  router.get('/:devID', (req, res) => {
+  router.get('/', (req, res) => {
     DataManager.DevGet(req.params).then((pins) => {
       res.json(pins)
     })
