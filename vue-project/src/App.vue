@@ -1,5 +1,26 @@
 <script setup>
 import Device from "./components/Device.vue"
+
+const API_Devices = "http://localhost:4000/devices"
+
+export default{
+  data(){
+    return{
+      devices: []
+    }
+  },
+  methods:{
+    GetDevices(){
+
+    },
+    AddDevice(){
+
+    }
+    DeleteDevice(){
+
+    }
+  }
+}
 </script>
 
 <template>
