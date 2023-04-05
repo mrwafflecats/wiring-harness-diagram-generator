@@ -1,5 +1,5 @@
 <script>
-import Device from "./components/Device.vue"
+import Device from "./Device.vue"
 
 const API_Devices = "http://localhost:4000/devices"
 
