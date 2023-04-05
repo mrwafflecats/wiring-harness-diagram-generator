@@ -66,11 +66,10 @@ export default {
                         this.messages.push(result)
                     }
             })
-            .then(this.ToggleEditMode)
-        },
-        ToggleEditMode(){
-            this.editMode = false
-            this.$emit('editCon')
+            .then(() =>{
+                this.$emit('editCon')
+                this.editMode = false
+            })
         }
     }
 }
