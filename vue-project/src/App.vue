@@ -11,7 +11,9 @@ export default{
   },
   methods:{
     GetDevices(){
-
+      fetch(API_Devices)
+      .then(response => response.json)
+      .then(result => this.devices = result)
     },
     AddDevice(){
 
