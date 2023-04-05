@@ -10,7 +10,8 @@ export default{
   data(){
     return{
       devices: [],
-      deviceInput: ''
+      deviceInput: '',
+      error: ''
     }
   },
   methods:{
@@ -19,11 +20,28 @@ export default{
       .then(response => response.json)
       .then(result => this.devices = result)
     },
-    AddDevice(){
+    AddDevice(name){
       fetch(API_Devices, {
         method: "POST",
-        body: JSON.stringify(this.deviceInput)
+        body: JSON.stringify({name: name}),
+        headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json"
+                }
       })
+      .then(response => response.json)
+      .then(result => {
+        if (result.details) {
+            //there was an error
+            const error = result.details
+                .map(detail => detail.pin)
+                .join(". ")
+            this.error = error
+        } else {
+            this.error = ""                        
+        }
+        })
+        .then(this.GetDevices()) //TODO: this doesnt't actually get the stuff
     },
     DeleteDevice(){
 
