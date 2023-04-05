@@ -1,8 +1,7 @@
-//joi is for data validation
-//this file is a model for pin objects between client, server and database
-
 const { func } = require('joi')
 const Joi = require('joi')
+
+//that moment when you realize your data structure is ass and redundant
 
 const schema = Joi.object().keys({
     id: Joi.number().required(),
@@ -15,7 +14,6 @@ const schema = Joi.object().keys({
             connector: Joi.string().allow(null, '')
         }
     }
-    //TODO: add the stuff for connection
 })
 
 //every db entry, no matter what it is, will get it's own unique id
