@@ -6,7 +6,8 @@ const API_Devices = "http://localhost:4000/devices"
 export default{
   data(){
     return{
-      devices: []
+      devices: [],
+      deviceInput: ''
     }
   },
   methods:{
@@ -16,7 +17,10 @@ export default{
       .then(result => this.devices = result)
     },
     AddDevice(){
-
+      fetch(API_Devices, {
+        method: "POST",
+        body: JSON.stringify(this.deviceInput)
+      })
     },
     DeleteDevice(){
 
@@ -44,6 +48,8 @@ export default{
           <Device :id="d.id" :name="d.device.name"/>
         </li>
       </ul>
+      <input v-model="deviceInput">
+      <button @click="AddDevice()">Add Device</button>
     </div>
   </header>
 
