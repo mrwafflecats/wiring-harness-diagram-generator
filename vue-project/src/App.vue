@@ -17,10 +17,14 @@ export default{
     },
     AddDevice(){
 
-    }
+    },
     DeleteDevice(){
 
+    },
+    UpdateDevice(){
+      
     }
+    
   }
 }
 </script>
