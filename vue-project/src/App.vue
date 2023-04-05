@@ -22,7 +22,7 @@ export default{
 
     },
     UpdateDevice(){
-      
+
     }
     
   }
@@ -39,7 +39,11 @@ export default{
       height="125"
     /> -->
     <div class="wrapper">
-      <Device></Device>
+      <ul>
+        <li v-for="d in devices :key=d.id">
+          <Device :id="d.id" :name="d.device.name"/>
+        </li>
+      </ul>
     </div>
   </header>
 
