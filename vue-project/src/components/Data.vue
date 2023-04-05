@@ -34,7 +34,7 @@ export default{
 </script>
 <template>
       <ul>
-        <li v-for="d in devices :key=d.id">
+        <li v-for="d in devices" :key=d.id>
           <Device :id="d.id" :name="d.device.name"/>
         </li>
       </ul>
