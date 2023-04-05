@@ -18,7 +18,7 @@ export default{
             error: '',
             connectorInput:'',
             connectorswithID:[],
-            newName: '',
+            newName: this.name,
             editMode: false
         }
     },
@@ -101,15 +101,25 @@ export default{
                         this.messages.push(result)
                     }
             })
-            .then(this.$emit('editDev'))
+            .then(() => {
+                this.$emit('editDev')
+                this.editMode = false
+            })
+        },
 
-        }
+
     }
 }
 </script>
 
 <template>
-<h2>Device: {{this.name}}</h2>
+<h2 v-if="!editMode" @click="editMode = true">Device: {{this.name}}</h2>
+
+<div v-if="editMode">
+<input v-model="newName">
+<button @click="UpdateDevice()">Update Pin</button>
+</div>
+
 <li v-for="connector in connectorswithID"><Connector :name="connector.connector.name" :id="connector.id"/></li>
 <!-- TODO add a way to create new connectors -->
 <input v-model="connectorInput" placeholder="Connector Name">
