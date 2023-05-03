@@ -163,7 +163,7 @@ function ConAddPin(conID, pinIndex) {
 //DEVICE STUFF
 
 function DevCreate(devName) {
-    devices.push({ id: idCount, device: { name: devName, connectors: [] } })
+    devices.push({ id: idCount, device: { name: devName.name, connectors: [] } })
     idCount++
     return Promise.resolve()
 }
