@@ -188,7 +188,7 @@ function DevDelete(dev) {
     return Promise.resolve()
 }
 
-function DevGet(devID) {
+function DevGet() {
     return new Promise((resolve, reject) => {
         resolve(devices)
     })
