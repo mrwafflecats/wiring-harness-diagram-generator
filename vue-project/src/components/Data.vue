@@ -61,5 +61,6 @@ export default{
         </li>
       </ul>
       <input v-model="deviceInput">
-      <button @click="AddDevice()">Add Device</button>
+      <button @click="AddDevice(deviceInput)">Add Device</button>
+      <button @click="GetDevices()">get devices</button>
 </template>
