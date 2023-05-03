@@ -41,7 +41,7 @@ export default{
             this.error = ""                        
         }
         })
-        .then(this.GetDevices()) 
+        .then(this.GetDevices())//this doens't wait for the data before updating, i think
     },
     DeleteDevice(){
 
