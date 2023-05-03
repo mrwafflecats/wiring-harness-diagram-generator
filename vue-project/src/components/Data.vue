@@ -7,7 +7,7 @@ export default{
     components:{
         Device
     },
-  data(){
+  data: function(){
     return{
       devices: [],
       deviceInput: '',
@@ -17,7 +17,7 @@ export default{
   methods:{
     GetDevices(){
       fetch(API_Devices)
-      .then(response => response.json)
+      .then(response => response.json())
       .then(result => this.devices = result)
     },
     AddDevice(name){
@@ -41,7 +41,7 @@ export default{
             this.error = ""                        
         }
         })
-        .then(this.GetDevices()) //TODO: this doesnt't actually get the stuff
+        .then(this.GetDevices()) 
     },
     DeleteDevice(){
 
