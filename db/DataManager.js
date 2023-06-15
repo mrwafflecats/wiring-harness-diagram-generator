@@ -121,7 +121,7 @@ function ConUpdate(con) {
         let error = 'No such ID in connectors to update'
         return Promise.reject(error)
     }
-    connectors[index].connecter.name = con.name
+    connectors[index].connector.name = con.name
     return Promise.resolve()
 }
 
