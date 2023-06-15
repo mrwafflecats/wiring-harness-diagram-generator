@@ -33,8 +33,8 @@ var bodyParser = require('body-parser')
   })
   
   //Recieves pin from a client and adds it to the database 
-  router.post('/', (req, res) => {
-    DataManager.ConCreate(req.body)
+  router.post('/:devID', (req, res) => {
+    DataManager.ConCreate(req.body, req.params)
       .then((result) => {
         res.status(201).json({string:'Successfully added connector'})
       }).catch((error) => {

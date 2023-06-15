@@ -135,9 +135,9 @@ function ConDelete(con) {
     return Promise.resolve()
 }
 
-function ConGet(conID) {
+function ConGet(params) {
     return new Promise((resolve, reject) => {
-        let id = conID.id
+        let id = Number(params.conID)
         let devIndex = devices.findIndex(x => x.id == id)
         if (devIndex == -1)
             reject("No such device id")
