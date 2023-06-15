@@ -4,36 +4,36 @@ import Connector from "./Connector.vue"
 const API_Devices = "http://localhost:4000/devices"
 const API_Connectors = "http://localhost:4000/connectors"
 
-export default{
+export default {
     emits: ['editDev'],
-    components:{
+    components: {
         Connector
     },
     props: {
         id: Number,
         name: String
     },
-    data(){
-        return{
+    data() {
+        return {
             error: '',
-            connectorInput:'',
-            connectorswithID:[],
+            connectorInput: '',
+            connectorswithID: [],
             newName: this.name,
             editMode: false
         }
     },
-    methods:{
-        AddConnector(name){
-            fetch(API_Connectors, {
+    methods: {
+        AddConnector(name) {
+            fetch(API_Connectors + '/' + this.id, {
                 method: "POST",
-                body: JSON.stringify({name: name}),
+                body: JSON.stringify({ name: name }),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
                 }
             }).then(response => response.json())
-            .then(result => {                
-                if (result.details) {
+                .then(result => {
+                    if (result.details) {
                         //there was an error
                         const error = result.details
                             .map(detail => detail.pin)
@@ -44,25 +44,25 @@ export default{
                         this.error = ""
                         this.GetConnectors()
                     }
-            })
+                })
         },
-        GetConnectors(){
+        GetConnectors() {
             fetch(API_Connectors + '/' + this.id)
                 .then(response => response.json())
                 .then(result => {
                     this.connectorswithID = result
                 })
         },
-        DeleteDevice(){
+        DeleteDevice() {
             fetch(API_Devices, {
                 method: "DELETE",
-                body: JSON.stringify({id: this.id}),
+                body: JSON.stringify({ id: this.id }),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
                 }
             })
-            .then(response => response.json())
+                .then(response => response.json())
                 .then(result => {
                     if (result.details) {
                         const error = result.details
@@ -78,18 +78,18 @@ export default{
                 })
                 .then(this.$emit('editDev'))
         },
-        UpdateDevice(){
+        UpdateDevice() {
             fetch(API_Devices, {
                 method: "POST",
-                body: JSON.stringify({name: this.newName, id: this.id}),
+                body: JSON.stringify({ name: this.newName, id: this.id }),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
                 }
             })
-            .then(response => response.json())
-            .then(result => {
-                if (result.details) {
+                .then(response => response.json())
+                .then(result => {
+                    if (result.details) {
                         const error = result.details
                             .map(detail => detail.pin)
                             .join(". ")
@@ -100,11 +100,11 @@ export default{
                         this.showMessageForm = false
                         this.messages.push(result)
                     }
-            })
-            .then(() => {
-                this.$emit('editDev')
-                this.editMode = false
-            })
+                })
+                .then(() => {
+                    this.$emit('editDev')
+                    this.editMode = false
+                })
         },
 
 
@@ -113,16 +113,17 @@ export default{
 </script>
 
 <template>
-<h2 v-if="!editMode" @click="editMode = true">Device: {{this.name}}</h2>
+    <h2 v-if="!editMode" @click="editMode = true">Device: {{ this.name }}</h2>
 
-<div v-if="editMode">
-<input v-model="newName">
-<button @click="UpdateDevice()">Update Pin</button>
-</div>
+    <div v-if="editMode">
+        <input v-model="newName">
+        <button @click="UpdateDevice()">Update Pin</button>
+    </div>
 
-<li v-for="connector in connectorswithID"><Connector :name="connector.connector.name" :id="connector.id"/></li>
-<!-- TODO add a way to create new connectors -->
-<input v-model="connectorInput" placeholder="Connector Name">
-<button @click="AddConnector(connectorInput)">Add Connector</button>
-<button @click="GetConnectors()">Get connectors</button>
-</template>
+    <li v-for="connector in connectorswithID">
+        <Connector :name="connector.connector.name" :id="connector.id" />
+    </li>
+    <!-- TODO add a way to create new connectors -->
+    <input v-model="connectorInput" placeholder="Connector Name">
+    <button @click="AddConnector(connectorInput)">Add Connector</button>
+    <button @click="GetConnectors()">Get connectors</button></template>
