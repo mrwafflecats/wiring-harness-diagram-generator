@@ -121,7 +121,7 @@ export default {
     </div>
 
     <li v-for="connector in connectorswithID">
-        <Connector :name="connector.connector.name" :id="connector.id" />
+        <Connector :name="connector.connector.name" :id="connector.id" @editCon="GetConnectors"/>
     </li>
     <!-- TODO add a way to create new connectors -->
     <input v-model="connectorInput" placeholder="Connector Name">
