@@ -80,7 +80,7 @@ export default {
         },
         UpdateDevice() {
             fetch(API_Devices, {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify({ name: this.newName, id: this.id }),
                 headers: {
                     "content-type": "application/json",
@@ -99,11 +99,9 @@ export default {
                         this.error = ""
                         this.showMessageForm = false
                         this.messages.push(result)
+                        this.$emit('editDev')
+                        this.editMode = false
                     }
-                })
-                .then(() => {
-                    this.$emit('editDev')
-                    this.editMode = false
                 })
         },
 

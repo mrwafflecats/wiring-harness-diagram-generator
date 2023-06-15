@@ -46,7 +46,7 @@ export default {
         },
         UpdateName(){
             fetch(API_Connectors, {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify({ id: this.id, name:this.nameInput}),
                 headers: {
                     "content-type": "application/json"
