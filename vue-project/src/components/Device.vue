@@ -98,10 +98,12 @@ export default {
                     } else {
                         this.error = ""
                         this.showMessageForm = false
-                        this.messages.push(result)
-                        this.$emit('editDev')
-                        this.editMode = false
+                        // this.messages.push(result)
                     }
+                })
+                .then(()=>{
+                    this.$emit('editDev')
+                    this.editMode = false
                 })
         },
 
@@ -115,7 +117,7 @@ export default {
 
     <div v-if="editMode">
         <input v-model="newName">
-        <button @click="UpdateDevice()">Update Pin</button>
+        <button @click="UpdateDevice()">Update Device</button>
     </div>
 
     <li v-for="connector in connectorswithID">
