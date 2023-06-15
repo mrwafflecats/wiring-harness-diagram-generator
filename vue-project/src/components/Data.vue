@@ -57,7 +57,7 @@ export default{
 <template>
       <ul>
         <li v-for="d in devices" :key=d.id>
-          <Device :id="d.id" :name="d.device.name"/>
+          <Device :id="d.id" :name="d.device.name" @editDev="GetDevices"/>
         </li>
       </ul>
       <input v-model="deviceInput">
