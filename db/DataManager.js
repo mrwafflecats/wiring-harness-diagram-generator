@@ -103,10 +103,12 @@ function PinDelete(pin) {
 
 //CONNECTOR STUFF
 //TODO add the error handling stuff
-function ConCreate(conName) {
+function ConCreate(conName, param) {
     //the param should be a string that represents the connector name
     //the pins array is just an array of the id's of pins 
-    connectors.push({ id: idCount, connector: { name: conName.name, pins: [] } })
+    let newCon = { id: idCount, connector: { name: conName.name, pins: [] } }
+    connectors.push(newCon)
+    devices[devices.findIndex(x => x.id == param.devID)].device.connectors.push(newCon.id)
     idCount++
     return Promise.resolve()
 }
