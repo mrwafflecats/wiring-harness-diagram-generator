@@ -63,7 +63,7 @@ export default {
                     } else {
                         this.errorString = ""
                         this.showMessageForm = false
-                        this.messages.push(result)
+                        // this.messages.push(result)
                     }
             })
             .then(() =>{
