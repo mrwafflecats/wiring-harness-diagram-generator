@@ -19,8 +19,6 @@ export default {
 
     data: function () {
         return {
-            // id: '',
-            // name:'',
             pinswithID: [],
             editMode: false,
             nameInput: "",
@@ -43,6 +41,31 @@ export default {
                 .then(result => {
                     this.pinswithID = result
                 })
+        },
+        DeleteConnector() {
+            fetch(API_Connectors, {
+                method: "DELETE",
+                body: JSON.stringify({ id: this.id }),
+                headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.details) {
+                        const error = result.details
+                            .map(detail => detail.pin)
+                            .join(". ")
+
+                        this.error = error
+                    } else {
+                        this.error = ""
+                        this.showMessageForm = false
+                        // this.messages.push(result)
+                    }
+                })
+                .then(() => this.$emit('editCon'))
         },
         UpdateName(){
             fetch(API_Connectors, {
@@ -83,6 +106,7 @@ export default {
         <div v-if="editMode">
             <input v-model="nameInput">
             <button @click="UpdateName">Update</button>
+            <button @click="DeleteConnector">Delete Connector</button>
         </div>
     <ul>
         <li v-for="p in pinswithID" :key="p.id">
