@@ -73,10 +73,10 @@ export default {
                     } else {
                         this.error = ""
                         this.showMessageForm = false
-                        this.messages.push(result)
+                        // this.messages.push(result)
                     }
                 })
-                .then(this.$emit('editDev'))
+                .then(() => this.$emit('editDev'))
         },
         UpdateDevice() {
             fetch(API_Devices, {
@@ -117,7 +117,8 @@ export default {
 
     <div v-if="editMode">
         <input v-model="newName">
-        <button @click="UpdateDevice()">Update Device</button>
+        <button @click="UpdateDevice">Update Device</button>
+        <button @click="DeleteDevice">Delete Device</button>
     </div>
 
     <li v-for="connector in connectorswithID">
