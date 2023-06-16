@@ -76,7 +76,10 @@ export default {
                         // this.messages.push(result)
                     }
                 })
-                .then(() => this.$emit('editDev'))
+                .then(() => {
+                    this.$emit('editDev')
+                    this.editMode = false
+                })
         },
         UpdateDevice() {
             fetch(API_Devices, {

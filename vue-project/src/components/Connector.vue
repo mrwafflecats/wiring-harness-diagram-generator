@@ -65,7 +65,10 @@ export default {
                         // this.messages.push(result)
                     }
                 })
-                .then(() => this.$emit('editCon'))
+                .then(() => {
+                    this.$emit('editCon')
+                    this.editMode = false
+                })
         },
         UpdateName(){
             fetch(API_Connectors, {
