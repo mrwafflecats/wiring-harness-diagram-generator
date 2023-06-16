@@ -21,7 +21,7 @@ export default {
         return {
             pinswithID: [],
             editMode: false,
-            nameInput: "",
+            newName: this.name,
             errorString: ""
         }
     },
@@ -73,7 +73,7 @@ export default {
         UpdateName(){
             fetch(API_Connectors, {
                 method: "PUT",
-                body: JSON.stringify({ id: this.id, name:this.nameInput}),
+                body: JSON.stringify({ id: this.id, name:this.newName}),
                 headers: {
                     "content-type": "application/json"
                 }
@@ -107,7 +107,7 @@ export default {
         <h2 v-if="!editMode" @click="editMode = true">Connector: {{ name }}</h2>
 
         <div v-if="editMode">
-            <input v-model="nameInput">
+            <input v-model="newName">
             <button @click="UpdateName">Update</button>
             <button @click="DeleteConnector">Delete Connector</button>
         </div>
