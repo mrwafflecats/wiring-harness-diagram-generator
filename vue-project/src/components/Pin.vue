@@ -15,7 +15,7 @@ export default {
                 pinNum: this.initPinNum,
                 color: this.initColor,
                 description: this.initDescription,
-                connection: { pinNum: "", connector: "" },
+                connection: { pinNum: "", connector: "" , device: ""},
             },
             editMode: false
         };
@@ -86,7 +86,7 @@ export default {
         <h5>{{ pin.pinNum }}</h5>
         <h5>{{ pin.color }}</h5>
         <h5>{{ pin.description }}</h5>
-        <h5>Connected to pin {{ pin.connection.pinNum }} on connector {{ pin.connection.connector }}</h5>
+        <h5>Connected to pin {{ pin.connection.pinNum }} on connector {{ pin.connection.connector }} on device {{ pin.connection.device }}</h5>
     </div>
 
     <div v-if="editMode">
