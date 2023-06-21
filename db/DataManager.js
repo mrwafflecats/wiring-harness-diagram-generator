@@ -20,6 +20,7 @@ const schema = Joi.object().keys({
 var pins = []
 var connectors = []
 var devices = []
+var connections = []
 var idCount = 0
 
 
@@ -196,6 +197,24 @@ function DevGet() {
     })
 }
 
+//Connection Stuff
+function ConnectionCreate(){
+
+}
+
+function ConnectionUpdate(){
+
+}
+
+function ConnectionDelete(){
+
+}
+
+function ConnectionGet(){
+    return new Promise((resolve, reject) => {
+        resolve(connections)
+    })
+}
 module.exports = {
     PinCreate,
     PinDelete,
@@ -208,5 +227,9 @@ module.exports = {
     DevCreate,
     DevUpdate,
     DevDelete,
-    DevGet
+    DevGet,
+    ConnectionCreate,
+    ConnectionUpdate,
+    ConnectionDelete,
+    ConnectionGet
 }
