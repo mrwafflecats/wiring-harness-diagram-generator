@@ -205,7 +205,7 @@ return Promise.resolve()
 }
 
 function ConnectionUpdate(conn){
-    let index = connections.findIndex(x => x.id == connection.id)
+    let index = connections.findIndex(x => x.id == conn.id)
     if (index == -1) {
         let error = 'No such ID in connections'
         return Promise.reject(error)
@@ -215,7 +215,7 @@ function ConnectionUpdate(conn){
 }
 
 function ConnectionDelete(conn){
-    let index = connections.findIndex(x => x.id == connection.id)
+    let index = connections.findIndex(x => x.id == conn.id)
     if (index == -1) {
         let error = 'No such ID in connections'
         return Promise.reject(error)
