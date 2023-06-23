@@ -10,6 +10,11 @@ export default{
     },
 
     methods:{
+        GetConnections(){
+            fetch(API_Connections)
+            .then(response => response.json())
+            .then(result => this.connections = result)
+        }
 
     }
 
@@ -17,5 +22,5 @@ export default{
 </script>
 
 <template>
-    
+
 </template>
