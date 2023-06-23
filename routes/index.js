@@ -6,10 +6,12 @@ const DataManager = require('../db/DataManager');
 let pins = require('./pins')
 let connectors = require('./connectors')
 let devices = require('./devices')
+let connections = require('./connections')
 
 router.use('/pins', pins)
 router.use('/connectors', connectors)
 router.use('/devices', devices)
+router.use('/connections', connections)
 
 /* GET home page. */
 // TODO: have this post the vue project
