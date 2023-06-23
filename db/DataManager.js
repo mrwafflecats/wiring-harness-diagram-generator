@@ -198,16 +198,30 @@ function DevGet() {
 }
 
 //Connection Stuff
-function ConnectionCreate(){
-
+function ConnectionCreate(conn){
+connections.push({id: idCount, connection: {devA: conn.devA, conA: conn.conA, pinA: conn.pinA, devB: conn.devB, conB: conn.conB, pinB: conn.pinB} })
+idCount++
+return Promise.resolve()
 }
 
-function ConnectionUpdate(){
-
+function ConnectionUpdate(conn){
+    let index = connections.findIndex(x => x.id == connection.id)
+    if (index == -1) {
+        let error = 'No such ID in connections'
+        return Promise.reject(error)
+    }
+    connections[index].connection = conn.connection
+    return Promise.resolve()
 }
 
-function ConnectionDelete(){
-
+function ConnectionDelete(conn){
+    let index = connections.findIndex(x => x.id == connection.id)
+    if (index == -1) {
+        let error = 'No such ID in connections'
+        return Promise.reject(error)
+    }
+    connections.splice(index, 1)
+    return Promise.resolve()
 }
 
 function ConnectionGet(){
