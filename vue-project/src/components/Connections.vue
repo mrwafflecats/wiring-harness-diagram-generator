@@ -1,11 +1,14 @@
 <script>
-const API_Connections = "http://localhost:4000/connections"
+const API = "http://localhost:4000/"
 
 export default{
 
     data: function(){
         return {
             connections: [],
+            devices: [],
+            connectors: [],
+            pins: []
         }
     },
 
