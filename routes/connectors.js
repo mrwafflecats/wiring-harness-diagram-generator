@@ -11,6 +11,16 @@ var bodyParser = require('body-parser')
   router.use(bodyParser.urlencoded({extended: true}))
 
 
+  router.get('/', (req, res) => {
+    DataManager.ConGetAll().then((cons) => {
+      res.json(cons)
+    })
+    .catch((error) => {
+      res.status(500)
+      res.json(error)
+    })
+  })
+
   router.get('/:conID', (req, res) => {
     DataManager.ConGet(req.params).then((pins) => {
       res.json(pins)
