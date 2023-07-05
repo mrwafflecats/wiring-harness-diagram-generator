@@ -102,6 +102,12 @@ function PinDelete(pin) {
 
 }
 
+function PinGetAll(){
+    return new Promise((resolve, reject) => {
+        resolve(pins)
+    })
+}
+
 //CONNECTOR STUFF
 //TODO add the error handling stuff
 function ConCreate(conName, param) {
@@ -150,6 +156,12 @@ function ConGet(params) {
             resolve(constoSend)
         }
 
+    })
+}
+
+function ConGetAll(){
+    return new Promise((resolve, reject) => {
+        resolve(connectors)
     })
 }
 
