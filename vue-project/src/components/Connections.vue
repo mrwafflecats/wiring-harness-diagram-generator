@@ -14,11 +14,25 @@ export default{
 
     methods:{
         GetConnections(){
-            fetch(API_Connections)
+            fetch(API + "connections")
             .then(response => response.json())
             .then(result => this.connections = result)
+        },
+        GetDevices(){
+            fetch(API + "devices")
+            .then(response => response.json())
+            .then(result => this.devices = result)
+        },
+        GetConnectors(){
+            fetch(API + "connectors")
+            .then(response => response.json())
+            .then(result => this.connectors = result)
+        },
+        GetPins(){
+            fetch(API + "pins")
+            .then(response => response.json())
+            .then(result => this.pins = result)
         }
-
     }
 
 }
