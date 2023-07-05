@@ -19,9 +19,9 @@ var bodyParser = require('body-parser')
     })
   })
   
-  //Updates a pin sent by client
-  router.put('/', (req, res) => {
-    DataManager.ConnectionUpdate(req.body)
+  //Updates a connection sent by client
+  router.put('/:connID', (req, res) => {
+    DataManager.ConnectionUpdate(req.body, req.params)
       .then((result) => {
         res.status(201).json({string:'Successfully updated Connection'})
       }).catch((error) => {
@@ -30,7 +30,7 @@ var bodyParser = require('body-parser')
       })
   })
   
-  //Recieves pin from a client and adds it to the database 
+  //Recieves connection from a client and adds it to the database 
   router.post('/', (req, res) => {
     DataManager.ConnectionCreate(req.body)
       .then((result) => {
