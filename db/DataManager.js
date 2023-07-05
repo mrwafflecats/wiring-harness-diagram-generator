@@ -204,13 +204,13 @@ idCount++
 return Promise.resolve()
 }
 
-function ConnectionUpdate(conn){
-    let index = connections.findIndex(x => x.id == conn.id)
+function ConnectionUpdate(conn, param){
+    let index = connections.findIndex(x => x.id == param.id)
     if (index == -1) {
         let error = 'No such ID in connections'
         return Promise.reject(error)
     }
-    connections[index].connection = conn.connection
+    connections[index].connection = conn.name
     return Promise.resolve()
 }
 
