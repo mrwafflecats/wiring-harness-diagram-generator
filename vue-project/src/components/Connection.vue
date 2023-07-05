@@ -2,7 +2,10 @@
 const API_Connections = "http://localhost:4000/connections"
 
 export default{
-
+    props: {
+        id: Number,
+        name: String
+    },
     data: function(){
         return {
             devA: -1,
