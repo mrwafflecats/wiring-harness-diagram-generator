@@ -20,10 +20,32 @@ export default{
     },
 
     methods:{
-        UpdateConnection(){
+        DeleteConnection(){
             fetch(API_Connections, {
+                method: "DELETE",
+                headers: {
+                    "content-type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+            .then(response => response.json())
+                .then(result => {
+                    if (result.details) {
+                        const error = result.details
+                            .map(detail => detail.pin)
+                            .join(". ")
+                        this.error = error
+                    } else {
+                        this.error = ""
+                        this.showMessageForm = false
+                        // this.messages.push(result)
+                    }
+                })
+        },
+        UpdateConnection(){
+            fetch(API_Connections + '/' + this.id, {
                 method: "PUT",
-                body: JSON.stringify({ name: this.newName, id: this.id }),
+                body: JSON.stringify({ name: this.newName }),
                 headers: {
                     "content-type": "application/json",
                     "Accept": "application/json"
